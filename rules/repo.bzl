@@ -57,12 +57,12 @@ def download_deps_repos():
             "https://github.com/hdl/bazel_rules_hdl/archive/7a1ba0e8d229200b4628e8a676917fc6b8e165d1.tar.gz",
         ],
         patches = [
-            "@bazel-chisel//external:0001-Use-systemc-in-verilator-and-support-verilator-in-co.patch",
-            "@bazel-chisel//external:0002-Update-cocotb-script-to-support-newer-version.patch",
-            "@bazel-chisel//external:0003-Export-vdb-via-undeclared-test-outputs.patch",
-            "@bazel-chisel//external:0004-More-jobs-for-cocotb.patch",
-            "@bazel-chisel//external:0005-Use-num_failed-for-exit-code.patch",
-            "@bazel-chisel//external:0006-Separate-build-from-test-for-Verilator.patch",
+            "//external:0001-Use-systemc-in-verilator-and-support-verilator-in-co.patch",
+            "//external:0002-Update-cocotb-script-to-support-newer-version.patch",
+            "//external:0003-Export-vdb-via-undeclared-test-outputs.patch",
+            "//external:0004-More-jobs-for-cocotb.patch",
+            "//external:0005-Use-num_failed-for-exit-code.patch",
+            "//external:0006-Separate-build-from-test-for-Verilator.patch",
         ],
         patch_args = ["-p1"],
     )
@@ -87,14 +87,14 @@ def download_deps_repos():
     http_archive(
         name = "llvm_firtool",
         urls = ["https://repo1.maven.org/maven2/org/chipsalliance/llvm-firtool/1.114.0/llvm-firtool-1.114.0.jar"],
-        build_file = "@bazel-chisel//third_party/llvm-firtool:BUILD.bazel",
+        build_file = "//third_party/llvm-firtool:BUILD.bazel",
         sha256 = "f93a831e6b5696df2e3327626df3cc183e223bf0c9c0fddf9ae9e51f502d0492",
     )
 
     # referenced by '@verilator//:verilator_lib'
     http_archive(
         name = "accellera_systemc",
-        build_file = "@bazel-chisel//external:systemc.BUILD",
+        build_file = "//external:systemc.BUILD",
         sha256 = "bfb309485a8ad35a08ee78827d1647a451ec5455767b25136e74522a6f41e0ea",
         strip_prefix = "systemc-2.3.4",
         urls = [

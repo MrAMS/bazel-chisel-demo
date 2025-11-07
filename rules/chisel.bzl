@@ -56,7 +56,7 @@ def chisel_library(
         name = name,
         srcs = srcs,
         deps = [
-            "@bazel-chisel//lib:chisel_lib",
+            "//lib:chisel_lib",
             "@org_chipsalliance_chisel_plugin//jar",
         ] + deps,
         resources = resources,
@@ -77,7 +77,7 @@ def chisel_binary(
         srcs = srcs,
         main_class = main_class,
         deps = [
-            "@bazel-chisel//lib:chisel_lib",
+            "//lib:chisel_lib",
             "@org_chipsalliance_chisel_plugin//jar",
         ] + deps,
         scalacopts = SCALA_COPTS,
@@ -97,7 +97,7 @@ def chisel_test(
         name = scalatest_name,
         srcs = srcs,
         deps = [
-            "@bazel-chisel//lib:chisel_lib",
+            "//lib:chisel_lib",
             "@org_chipsalliance_chisel_plugin//jar",
             "@org_scalatest_scalatest//jar",
             "@edu_berkeley_cs_firrtl//jar",
@@ -105,7 +105,7 @@ def chisel_test(
             "@net_java_dev_jna//jar",
         ] + deps,
         data = [
-            "@bazel-chisel//third_party/llvm-firtool:firtool",
+            "//third_party/llvm-firtool:firtool",
         ],
         env = {
             # Stop verilator from using ccache, this causes CI issues.
@@ -121,12 +121,12 @@ def chisel_test(
 
     native.sh_test(
         name = name,
-        srcs = ["@bazel-chisel//rules:chisel_test_runner.sh"],
+        srcs = ["//rules:chisel_test_runner.sh"],
         data = [
             ":{}".format(scalatest_name),
             "@verilator//:verilator_bin",
             "@verilator//:verilator_lib",
-            "@bazel-chisel//third_party/llvm-firtool:firtool",
+            "//third_party/llvm-firtool:firtool",
         ],
         env = {
             # Stop verilator from using ccache, this causes CI issues.
@@ -160,10 +160,10 @@ def chisel_cc_library(
         name = name + "_emit_verilog",
         srcs = [],
         outs = [verilog_file_path] + extra_outs,
-        cmd = "CHISEL_FIRTOOL_PATH=$$(dirname $(execpath @bazel-chisel//third_party/llvm-firtool:firtool)) ./$(location " + gen_binary_name + ") --target-dir=$(RULEDIR) " + gen_flags,
+        cmd = "CHISEL_FIRTOOL_PATH=$$(dirname $(execpath //third_party/llvm-firtool:firtool)) ./$(location " + gen_binary_name + ") --target-dir=$(RULEDIR) " + gen_flags,
         tools = [
             ":{}".format(gen_binary_name),
-            "@bazel-chisel//third_party/llvm-firtool:firtool",
+            "//third_party/llvm-firtool:firtool",
         ],
     )
 
