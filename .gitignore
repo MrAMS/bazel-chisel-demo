@@ -1,0 +1,9 @@
+bazel-*
+# python
+__pycache__
+# 
+.idea/
+.metals/
+.bsp/
+.bazelbsp/
+.vscode/

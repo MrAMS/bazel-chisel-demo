@@ -1,0 +1,25 @@
+build --action_env=BAZEL_CXXOPTS="-std=c++17"
+build --cxxopt='-std=c++17'
+build --conlyopt='-std=gnu11'
+
+# Disable the low signal-to-noise ratio warnings
+build --copt=-Wno-unused-function
+
+# Disable tool build warnings. The tools are fetched/generated from OSS repos
+build --host_copt=-Wno-unused-variable
+build --host_copt=-Wno-unused-value
+build --host_copt=-Wno-uninitialized
+build --host_copt=-O3
+
+# This lets us generate key/value pairs for the workspace which can be used to
+# generate the version information.
+
+# build --workspace_status_command=utils/get_workspace_status.sh
+
+build --experimental_cc_shared_library
+run --java_runtime_version=remotejdk_11
+test --java_runtime_version=remotejdk_11
+
+build --repo_env BAZEL_JVM_FETCH_SOURCES=false
+run --repo_env BAZEL_JVM_FETCH_SOURCES=false
+test --repo_env BAZEL_JVM_FETCH_SOURCES=false
