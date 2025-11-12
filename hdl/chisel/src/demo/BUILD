@@ -14,5 +14,9 @@ chisel_cc_library(
     name = "counter_cc_library",
     chisel_lib = ":demo",
     emit_class = "demo.EmitCounter",
-    module_name = "Counter"
+    module_name = "Counter",
+    vopts = select({
+        "//rules/build_settings:enable_wave_tracing": ["--trace"],
+        "//conditions:default": [],
+    }),
 )

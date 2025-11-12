@@ -179,8 +179,7 @@ def chisel_cc_library(
         module = ":{}_verilog".format(name),
         module_top = module_name,
         visibility = ["//visibility:public"],
-        # TODO(derekjchow): Re-enable the default -Wall?
-        vopts = vopts + ["--pins-bv", "2"],
+        vopts = vopts + ["--CFLAGS", "-march=native"] + ["--CFLAGS", "-O3"],
     )
 
 def chisel_deps():

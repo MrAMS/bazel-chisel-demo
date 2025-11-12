@@ -23,3 +23,5 @@ test --java_runtime_version=remotejdk_11
 build --repo_env BAZEL_JVM_FETCH_SOURCES=false
 run --repo_env BAZEL_JVM_FETCH_SOURCES=false
 test --repo_env BAZEL_JVM_FETCH_SOURCES=false
+
+build:wave --define=WAVE_ON=1

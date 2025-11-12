@@ -11,12 +11,26 @@ namespace {
 class CounterTest : public testing::Test {};
 
 TEST_F(CounterTest, count16) {
+  auto contextp = std::make_unique<VerilatedContext>();
   std::unique_ptr<VCounter> dut = std::make_unique<VCounter>();
-  auto clock_step = [&dut]() {
-    dut->clock = 0;
-    dut->eval();
-    dut->clock = 1;
-    dut->eval();
+
+#ifdef WAVEON
+  Verilated::traceEverOn(true);
+  auto tfp = std::make_unique<VerilatedVcdC>();
+  dut->trace(tfp.get(), 99);
+  char const* waveFile = "wave.vcd";
+  tfp->open(waveFile);
+#endif
+
+  auto clock_step = [&]() {
+    for(int i=0;i<=1;++i){
+      contextp->timeInc(1);
+      dut->clock = i;
+      dut->eval();
+#ifdef WAVEON
+      tfp.get()->dump(contextp->time());
+#endif
+    }
   };
   // reset
   dut->reset = 1;
@@ -29,6 +43,11 @@ TEST_F(CounterTest, count16) {
     dut->eval();
     EXPECT_EQ(int(dut->io_out), i%(1<<3));
   }
+
+#ifdef WAVEON
+  tfp->close();
+#endif
+  dut->final();
 }
 
 }  // namespace

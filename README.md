@@ -10,7 +10,9 @@ Install Bazel 6.2.1
 # generate compile_commands.json for IDEs
 bazel run @hedron_compile_commands//:refresh_all
 # emit verilog from chisel
-bazel build //hdl/chisel/src/demo:counter_cc_library_emit_verilog
+make gen
 # run the verilator test
-bazel run //tests/verilator_cpp:counter_test
+make run
+# run the verilator test with waveform tracing enabled
+make debug
 ```
