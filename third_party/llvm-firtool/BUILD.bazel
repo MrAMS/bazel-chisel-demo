@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-exports_files(glob(["org.chipsalliance/llvm-firtool/linux-x64/bin/**"]))
-
 package(default_visibility = ["//visibility:public"])
+
+load("@rules_shell//shell:sh_test.bzl", "sh_binary")
+
+exports_files(glob(["org.chipsalliance/llvm-firtool/linux-x64/bin/**"]))
 
 sh_binary(
     name = "firtool",

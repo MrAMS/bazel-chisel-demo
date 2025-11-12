@@ -17,6 +17,7 @@
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary", "scala_library", "scala_test")
 load("@rules_hdl//verilator:defs.bzl", "verilator_cc_library")
 load("@rules_hdl//verilog:providers.bzl", "verilog_library")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 load(
     "@io_bazel_rules_scala//scala:scala_cross_version.bzl",
@@ -119,7 +120,7 @@ def chisel_test(
         visibility = visibility,
     )
 
-    native.sh_test(
+    sh_test(
         name = name,
         srcs = ["//rules:chisel_test_runner.sh"],
         data = [
@@ -146,6 +147,19 @@ def chisel_cc_library(
         vopts = [],
         gen_flags = [],
         extra_outs = []):
+    """Generates a C++ library from Chisel code using Verilator.
+    
+    Args:
+        name: Name of the target
+        chisel_lib: Chisel library dependency
+        emit_class: Main class to emit Verilog
+        module_name: Name of the top-level module
+        verilog_deps: Verilog library dependencies
+        verilog_file_path: Path to the output Verilog file
+        vopts: Verilator options
+        gen_flags: Flags for the Verilog generator
+        extra_outs: Additional output files
+    """
     gen_binary_name = name + "_emit_verilog_binary"
     chisel_binary(
         name = gen_binary_name,
