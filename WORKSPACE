@@ -28,6 +28,10 @@ load(
 )
 download_deps_repos()
 
+load("@rules_shell//shell:repositories.bzl", "rules_shell_dependencies", "rules_shell_toolchains")
+rules_shell_dependencies()
+rules_shell_toolchains()
+
 # Setup Scala
 load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
 scala_config(scala_version = "2.13.11")
