@@ -56,7 +56,7 @@ def chisel_library(
         name = name,
         srcs = srcs,
         deps = [
-            "//lib:chisel_lib",
+            "//rules/lib:chisel_lib",
             "@org_chipsalliance_chisel_plugin//jar",
         ] + deps,
         resources = resources,
@@ -77,7 +77,7 @@ def chisel_binary(
         srcs = srcs,
         main_class = main_class,
         deps = [
-            "//lib:chisel_lib",
+            "//rules/lib:chisel_lib",
             "@org_chipsalliance_chisel_plugin//jar",
         ] + deps,
         scalacopts = SCALA_COPTS,
@@ -97,7 +97,7 @@ def chisel_test(
         name = scalatest_name,
         srcs = srcs,
         deps = [
-            "//lib:chisel_lib",
+            "//rules/lib:chisel_lib",
             "@org_chipsalliance_chisel_plugin//jar",
             "@org_scalatest_scalatest//jar",
             "@edu_berkeley_cs_firrtl//jar",
