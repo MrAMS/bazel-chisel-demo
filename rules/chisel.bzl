@@ -173,21 +173,7 @@ def chisel_cc_library(
         deps = verilog_deps,
     )
 
-    # Most use cases seem to be SystemC - so let's
-    # give that the unmodified name.
-    verilator_cc_library(
-        name = "{}".format(name),
-        module = ":{}_verilog".format(name),
-        module_top = module_name,
-        visibility = ["//visibility:public"],
-        # TODO(derekjchow): Re-enable the default -Wall?
-        vopts = vopts + ["--pins-bv", "2"],
-        systemc = True,
-    )
-
     # Regular C++ Verilator output.
-    # Append _cc to the library name to differentiate
-    # from SystemC.
     verilator_cc_library(
         name = "{}_cc".format(name),
         module = ":{}_verilog".format(name),
@@ -195,7 +181,6 @@ def chisel_cc_library(
         visibility = ["//visibility:public"],
         # TODO(derekjchow): Re-enable the default -Wall?
         vopts = vopts + ["--pins-bv", "2"],
-        systemc = False,
     )
 
 def chisel_deps():

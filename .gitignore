@@ -1,4 +1,7 @@
-bazel-*
+/bazel-*
+/external
+/compile_commands.json
+.cache/
 # python
 __pycache__
 # 
