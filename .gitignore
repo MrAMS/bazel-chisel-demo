@@ -4,6 +4,8 @@
 .cache/
 # python
 __pycache__
+# gtkewave
+gtkwave.sav
 # 
 .idea/
 .metals/

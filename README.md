@@ -13,6 +13,6 @@ bazel run @hedron_compile_commands//:refresh_all
 make gen
 # run the verilator test
 make run
-# run the verilator test with waveform tracing enabled
+# run the verilator test with waveform tracing enabled and open gtkwave
 make debug
 ```
