@@ -1,0 +1,42 @@
+name: Build & Test
+on:
+  pull_request:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+
+    - name: checkout code
+      uses: actions/checkout@v4
+
+    - name: install bazel
+      uses: bazel-contrib/setup-bazel@0.15.0
+      with:
+        # Avoid downloading Bazel every time.
+        bazelisk-cache: true
+        # Store build cache per workflow.
+        disk-cache: ${{ github.workflow }}
+        # Share repository cache between workflows.
+        repository-cache: true
+
+    - name: Emit Verilog
+      run: |
+        make gen
+    
+    - name: Run Simulations
+      run: |
+        make run
+    
+    - name: Debug Simulations
+      run: |
+        make debug
