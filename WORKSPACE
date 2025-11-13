@@ -52,12 +52,32 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 rules_proto_toolchains()
 
-# Setup HDL
+# Python 3.9
 load(
-    "@rules_hdl//dependency_support:dependency_support.bzl",
-    rules_hdl_dependency_support = "dependency_support",
+    "@rules_python//python:repositories.bzl",
+    "py_repositories",
+    "python_register_toolchains",
 )
+
+# Must be called before using anything from rules_python.
+# https://github.com/bazelbuild/rules_python/issues/1560#issuecomment-1815118394
+py_repositories()
+
+python_register_toolchains(
+    name = "python39",
+
+    # Required for our containerized CI environments; we do not recommend
+    # building bazel_rules_hdl as root normally.
+    ignore_root_user_error = True,
+    python_version = "3.9",
+)
+
+# Setup HDL
+load("@rules_hdl//dependency_support:dependency_support.bzl", rules_hdl_dependency_support = "dependency_support")
 rules_hdl_dependency_support()
+
+load("@rules_hdl//:init.bzl", rules_hdl_init = "init")
+rules_hdl_init()
 
 # Setup Chisel
 load(
@@ -65,13 +85,6 @@ load(
     "chisel_deps",
 )
 chisel_deps()
-
-# # Setup Python 3.9
-# load("@rules_python//python:repositories.bzl", "python_register_toolchains")
-# python_register_toolchains(
-#     name = "python39",
-#     python_version = "3.9",
-# )
 
 load(
     "@rules_foreign_cc//foreign_cc:repositories.bzl",

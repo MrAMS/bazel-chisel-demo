@@ -48,12 +48,13 @@ def download_deps_repos():
     #     strip_prefix = "rules_proto-f7a30f6f80006b591fa7c437fe5a951eb10bcbcf",
     # )
 
-    # http_archive(
-    #     name = "rules_python",
-    #     urls = ["https://github.com/bazelbuild/rules_python/archive/912a5051f51581784fd64094f6bdabf93f6d698f.zip"],
-    #     sha256 = "a3e4b4ade7c4a52e757b16a16e94d0b2640333062180cba577d81fac087a501d",
-    #     strip_prefix = "rules_python-912a5051f51581784fd64094f6bdabf93f6d698f",
-    # )
+    maybe(
+        http_archive,
+        name = "rules_python",
+        sha256 = "e3f1cc7a04d9b09635afb3130731ed82b5f58eadc8233d4efb59944d92ffc06f",
+        strip_prefix = "rules_python-0.33.2",
+        url = "https://github.com/bazelbuild/rules_python/releases/download/0.33.2/rules_python-0.33.2.tar.gz",
+    )
 
     maybe(
         http_archive,
@@ -62,6 +63,18 @@ def download_deps_repos():
         strip_prefix = "bazel_rules_hdl-7a1ba0e8d229200b4628e8a676917fc6b8e165d1",
         urls = [
             "https://github.com/hdl/bazel_rules_hdl/archive/7a1ba0e8d229200b4628e8a676917fc6b8e165d1.tar.gz",
+        ],
+    )
+
+    rules_hdl_git_hash = "d17bb1646fa36e6172b349cc59af8d31a427cf23"
+    rules_hdl_git_sha256 = "6968c4655b4c31388ef340b76b6737581b4a240d16cd4814cea32403440bb23b"
+    maybe(
+        http_archive,
+        name = "rules_hdl",
+        sha256 = rules_hdl_git_sha256,
+        strip_prefix = "bazel_rules_hdl-%s" % rules_hdl_git_hash,
+        urls = [
+            "https://github.com/hdl/bazel_rules_hdl/archive/%s.tar.gz" % rules_hdl_git_hash,
         ],
     )
 
