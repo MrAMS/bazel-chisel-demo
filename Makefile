@@ -6,6 +6,6 @@ run:
 
 debug:
 	bazel run --config=debug //tests/verilator_cpp:counter_test
-	-gtkwave bazel-bin/tests/verilator_cpp/counter_test.runfiles/bazel-chisel/wave.vcd -a gtkwave.sav --saveonexit
+	-gtkwave bazel-bin/tests/verilator_cpp/counter_test.runfiles/_main/wave.vcd -a gtkwave.sav --saveonexit
 
 .PHONY: gen run debug

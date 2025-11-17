@@ -29,3 +29,8 @@ build:debug --define=WAVE_ON=1
 # fix readonly error when using ccache
 build --strategy=CppCompile=local
 build --strategy=CppLink=local
+
+# For 3rd party code: Disable warnings entirely.
+# They are not actionable and just create noise.
+build --per_file_copt=external/.*@-w
+build --host_per_file_copt=external/.*@-w

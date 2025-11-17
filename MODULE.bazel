@@ -1,0 +1,87 @@
+"""MODULE.bazel"""
+
+module(
+    name = "bazel_chisel",
+)
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+include("//rules:rules_hdl_overrides.MODULE.bazel") # rules_hdl, see https://github.com/hdl/bazel_rules_hdl/issues/336
+
+# Shell
+bazel_dep(name = "rules_shell", version = "0.6.1")
+
+# Scala
+bazel_dep(name = "rules_scala", version = "7.0.0") 
+
+scala_config = use_extension(
+    "@rules_scala//scala/extensions:config.bzl",
+    "scala_config",
+)
+scala_config.settings(scala_version = "2.13.16")
+
+scala_deps = use_extension(
+    "@rules_scala//scala/extensions:deps.bzl",
+    "scala_deps",
+)
+
+scala_deps.scala()
+
+scala_deps.scalatest()
+
+
+bazel_dep(name = "rules_jvm_external", version = "6.8")
+
+# Chisel
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        # Scala 基础
+        "org.scala-lang:scala-reflect:2.13.11",
+        
+        # 核心库
+        "com.thoughtworks.paranamer:paranamer:2.8",
+        "org.antlr:antlr4-runtime:4.13.1",
+        "net.java.dev.jna:jna:5.14.0",
+        
+        # json4s 系列（Chisel 关键依赖）
+        "org.json4s:json4s-ast_2.13:4.0.7",
+        "org.json4s:json4s-scalap_2.13:4.0.7",
+        "org.json4s:json4s-core_2.13:4.0.7",
+        "org.json4s:json4s-native_2.13:4.0.7",
+        
+        # Apache Commons
+        "org.apache.commons:commons-lang3:3.11",
+        "org.apache.commons:commons-text:1.10.0",
+        
+        # 其他 Scala 库
+        "com.github.scopt:scopt_2.13:4.1.0",
+        "net.jcazevedo:moultingyaml_2.13:0.4.2",
+        "io.github.alexarchambault:data-class_2.13:0.2.5",
+        "com.lihaoyi:os-lib_2.13:0.10.7",
+        "com.lihaoyi:geny_2.13:0.7.1",
+        "com.lihaoyi:upickle_2.13:3.3.1",
+        "com.outr:moduload_2.13:1.1.7",
+        "com.outr:scribe_2.13:3.15.2",
+        
+        # Chisel 7.1.1
+        "org.chipsalliance:chisel_2.13:7.1.1",
+        "org.chipsalliance:chisel-plugin_2.13.6:7.1.1",
+        "org.chipsalliance:firtool-resolver_2.13:2.0.1",
+        
+        # FIRRTL 和测试
+        "edu.berkeley.cs:firrtl_2.13:5.0.0",
+        "org.scalatest:scalatest_2.13:3.2.19",
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+)
+use_repo(maven, "maven")
+
+http_archive(
+    name = "llvm_firtool",
+    urls = ["https://repo1.maven.org/maven2/org/chipsalliance/llvm-firtool/1.114.0/llvm-firtool-1.114.0.jar"],
+    build_file = "//third_party/llvm-firtool:BUILD.bazel",
+    sha256 = "f93a831e6b5696df2e3327626df3cc183e223bf0c9c0fddf9ae9e51f502d0492",
+)
