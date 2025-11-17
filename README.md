@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Install Bazel 6.2.1
+Install Bazel 7.4.1
 
 ## Usage
 
