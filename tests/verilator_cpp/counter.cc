@@ -1,9 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <verilated.h>
 #include <verilated_vcd_c.h>
+#include "VCounter.h"
+#pragma GCC diagnostic pop
 
 #include <memory>
 
-#include "VCounter.h"
 #include "gtest/gtest.h"
 
 namespace {
