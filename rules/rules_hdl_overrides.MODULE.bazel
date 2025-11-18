@@ -84,11 +84,10 @@ git_override(
     commit = "0fc4bdab71ea25e3623e2b609b4e5b2bd20bb938",
     remote = "https://github.com/amorphic-io/cxxopts.git",
 )
-git_override(
+archive_override(
     module_name = "yosys",
-    commit = "398bfa5d538593716d61a907c7cb596e76a1c858",
-    remote = "https://github.com/MrAMS/yosys.git",
-    init_submodules = True,
+    integrity = "sha256-iBIJaYqUIxMIwteRmQa2bfkT2cyMHvf28PpXx3ngdYg=",
+    urls = ["https://github.com/MrAMS/yosys/releases/download/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591.tar.gz"]
 )
 git_override(
     module_name = "swig",
@@ -125,11 +124,10 @@ git_override(
     commit = "e285aca41d39e84ab1753f125b095d65a0e15640",
     remote = "https://github.com/amorphic-io/tcl.git",
 )
-git_override(
+archive_override(
     module_name = "openroad",
-    commit = "c80e4b3f54dd94cdbebfecc3c98a64049b8c7efc",
-    remote = "https://github.com/amorphic-io/OpenROAD",
-    init_submodules = True,
+    integrity = "sha256-R52OM3qyOjgvZQhfRoG34eWagfWzA5fz308QDT4OrPw=",
+    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b.tar.gz"]
 )
 git_override(
     module_name = "bazel-orfs",
