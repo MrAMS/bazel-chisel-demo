@@ -1,5 +1,5 @@
 targets:
-    //...
+    //hdl/chisel/...
 
 build_manual_targets: false
 
