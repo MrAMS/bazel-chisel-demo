@@ -8,4 +8,7 @@ debug:
 	bazel run --config=debug //tests/verilator_cpp:counter_test
 	-gtkwave bazel-bin/tests/verilator_cpp/counter_test.runfiles/bazel-chisel/wave.vcd -a gtkwave.sav --saveonexit
 
-.PHONY: gen run debug
+eda:
+	bazel build //eda/openroad:openroad_counter_gds_write
+
+.PHONY: gen run debug eda

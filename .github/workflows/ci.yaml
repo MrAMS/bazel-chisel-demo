@@ -40,3 +40,7 @@ jobs:
     - name: Debug Simulations
       run: |
         make debug
+
+    - name: EDA Flow
+      run: |
+        make eda

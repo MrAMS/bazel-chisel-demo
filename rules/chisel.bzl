@@ -194,6 +194,7 @@ def chisel_cc_library(
         module_top = module_name,
         visibility = ["//visibility:public"],
         vopts = vopts + ["--CFLAGS", "-march=native"] + ["--CFLAGS", "-O3"],
+        copts = ["-w"],
     )
 
 def chisel_deps():

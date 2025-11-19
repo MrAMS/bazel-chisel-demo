@@ -10,19 +10,37 @@ def download_deps_repos():
     maybe(
         http_archive,
         name = "bazel_skylib",
-        sha256 = "b8a1527901774180afc798aeb28c4634bdccf19c4d98e7bdd1ce79d1fe9aaad7",
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.4.1/bazel-skylib-1.4.1.tar.gz",
-            "https://github.com/bazelbuild/bazel-skylib/releases/download/1.4.1/bazel-skylib-1.4.1.tar.gz",
+            "https://github.com/bazelbuild/bazel-skylib/releases/download/1.1.1/bazel-skylib-1.1.1.tar.gz",
+            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.1.1/bazel-skylib-1.1.1.tar.gz",
         ],
+        sha256 = "c6966ec828da198c5d9adbaa94c05e3a1c7f21bd012a0b29ba8ddbccb2c93b0d",
+    )
+
+    maybe(
+        http_archive,
+        name = "rules_proto",
+        sha256 = "6fb6767d1bef535310547e03247f7518b03487740c11b6c6adb7952033fe1295",
+        strip_prefix = "rules_proto-6.0.2",
+        url = "https://github.com/bazelbuild/rules_proto/releases/download/6.0.2/rules_proto-6.0.2.tar.gz",
+    )
+
+    maybe(
+        http_archive,
+        name = "com_google_ortools",
+        strip_prefix = "or-tools-9.10",
+        urls = ["https://github.com/google/or-tools/archive/refs/tags/v9.10.tar.gz"],
+        sha256 = "e7c27a832f3595d4ae1d7e53edae595d0347db55c82c309c8f24227e675fd378",
     )
 
     maybe(
         http_archive,
         name = "com_google_absl",
-        urls = ["https://storage.googleapis.com/grpc-bazel-mirror/github.com/abseil/abseil-cpp/archive/20230802.0.tar.gz", "https://github.com/abseil/abseil-cpp/archive/20230802.0.tar.gz"],
-        sha256 = "59d2976af9d6ecf001a81a35749a6e551a335b949d34918cfade07737b9d93c5",
-        strip_prefix = "abseil-cpp-20230802.0",
+        urls = ["https://github.com/abseil/abseil-cpp/archive/refs/tags/20240116.2.tar.gz"],
+        strip_prefix = "abseil-cpp-20240116.2",
+        sha256 = "733726b8c3a6d39a4120d7e45ea8b41a434cdacde401cba500f14236c49b39dc",
+        patches = ["@com_google_ortools//patches:abseil-cpp-20240116.2.patch"],
+        patch_args = ["-p1"],
     )
 
     maybe(
@@ -36,17 +54,22 @@ def download_deps_repos():
     maybe(
         http_archive,
         name = "rules_pkg",
-        urls = ["https://mirror.bazel.build/github.com/bazelbuild/rules_pkg/releases/download/0.7.0/rules_pkg-0.7.0.tar.gz", "https://github.com/bazelbuild/rules_pkg/releases/download/0.7.0/rules_pkg-0.7.0.tar.gz"],
-        sha256 = "8a298e832762eda1830597d64fe7db58178aa84cd5926d76d5b744d6558941c2",
+        sha256 = "a89e203d3cf264e564fcb96b6e06dd70bc0557356eb48400ce4b5d97c2c3720d",
+        urls = [
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_pkg/releases/download/0.5.1/rules_pkg-0.5.1.tar.gz",
+            "https://github.com/bazelbuild/rules_pkg/releases/download/0.5.1/rules_pkg-0.5.1.tar.gz",
+        ],
     )
 
-
-    # http_archive(
-    #     name = "rules_proto",
-    #     urls = ["https://github.com/bazelbuild/rules_proto/archive/f7a30f6f80006b591fa7c437fe5a951eb10bcbcf.zip"],
-    #     sha256 = "a4382f78723af788f0bc19fd4c8411f44ffe0a72723670a34692ffad56ada3ac",
-    #     strip_prefix = "rules_proto-f7a30f6f80006b591fa7c437fe5a951eb10bcbcf",
-    # )
+    maybe(
+        http_archive,
+        name = "com_google_protobuf",
+        urls = ["https://github.com/protocolbuffers/protobuf/releases/download/v26.1/protobuf-26.1.tar.gz"],
+        strip_prefix = "protobuf-26.1",
+        sha256 = "4fc5ff1b2c339fb86cd3a25f0b5311478ab081e65ad258c6789359cd84d421f8",
+        patch_args = ["-p1"],
+        patches = ["@com_google_ortools//patches:protobuf-v26.1.patch"],
+    )
 
     maybe(
         http_archive,
@@ -58,23 +81,30 @@ def download_deps_repos():
 
     maybe(
         http_archive,
-        name = "rules_hdl",
-        sha256 = "1b560fe7d4100486784d6f2329e82a63dd37301e185ba77d0fd69b3ecc299649",
-        strip_prefix = "bazel_rules_hdl-7a1ba0e8d229200b4628e8a676917fc6b8e165d1",
-        urls = [
-            "https://github.com/hdl/bazel_rules_hdl/archive/7a1ba0e8d229200b4628e8a676917fc6b8e165d1.tar.gz",
-        ],
+        name = "bazel_features",
+        sha256 = "07271d0f6b12633777b69020c4cb1eb67b1939c0cf84bb3944dc85cc250c0c01",
+        strip_prefix = "bazel_features-1.38.0",
+        url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.38.0/bazel_features-v1.38.0.tar.gz",
     )
 
-    rules_hdl_git_hash = "d17bb1646fa36e6172b349cc59af8d31a427cf23"
-    rules_hdl_git_sha256 = "6968c4655b4c31388ef340b76b6737581b4a240d16cd4814cea32403440bb23b"
+    maybe(
+        http_archive,
+        name = "rules_cc",
+        sha256 = "2037875b9a4456dce4a79d112a8ae885bbc4aad968e6587dca6e64f3a0900cdf",
+        strip_prefix = "rules_cc-0.0.9",
+        urls = ["https://github.com/bazelbuild/rules_cc/releases/download/0.0.9/rules_cc-0.0.9.tar.gz"],
+    )
+
+    # see https://github.com/hdl/bazel_rules_hdl/pull/426
+    rules_hdl_git_hash = "bddbbcf703b536b0961c7503fb956c3f446a368d"
+    rules_hdl_git_sha256 = "95f3a55aebafb8ce9ac8619662998fb3e5b6805ea13eed34f4d4b5792dd8ca26"
     maybe(
         http_archive,
         name = "rules_hdl",
         sha256 = rules_hdl_git_sha256,
         strip_prefix = "bazel_rules_hdl-%s" % rules_hdl_git_hash,
         urls = [
-            "https://github.com/hdl/bazel_rules_hdl/archive/%s.tar.gz" % rules_hdl_git_hash,
+            "https://github.com/MrAMS/bazel_rules_hdl/archive/%s.tar.gz" % rules_hdl_git_hash,
         ],
     )
 
@@ -109,7 +139,7 @@ def download_deps_repos():
     maybe(
         http_archive,
         name = "accellera_systemc",
-        build_file = "//third_party/systemc/BUILD.bazel",
+        build_file = "//third_party/systemc:BUILD.bazel",
         sha256 = "bfb309485a8ad35a08ee78827d1647a451ec5455767b25136e74522a6f41e0ea",
         strip_prefix = "systemc-2.3.4",
         urls = [

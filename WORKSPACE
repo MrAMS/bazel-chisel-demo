@@ -28,27 +28,9 @@ load(
 )
 download_deps_repos()
 
-load("@rules_shell//shell:repositories.bzl", "rules_shell_dependencies", "rules_shell_toolchains")
-rules_shell_dependencies()
-rules_shell_toolchains()
-
-# Setup Scala
-load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-scala_config(scala_version = "2.13.11")
-
-load("@io_bazel_rules_scala//scala:scala.bzl", "rules_scala_setup", "rules_scala_toolchain_deps_repositories")
-rules_scala_setup()
-rules_scala_toolchain_deps_repositories(fetch_sources = True)
-
-load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-scala_register_toolchains()
-
-load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
-scalatest_repositories()
-scalatest_toolchain()
-
 # Protobuf
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies")
+load("@rules_proto//proto:toolchains.bzl", "rules_proto_toolchains")
 rules_proto_dependencies()
 rules_proto_toolchains()
 
@@ -78,6 +60,30 @@ rules_hdl_dependency_support()
 
 load("@rules_hdl//:init.bzl", rules_hdl_init = "init")
 rules_hdl_init()
+
+
+# Setup Shell
+load("@rules_shell//shell:repositories.bzl", "rules_shell_dependencies", "rules_shell_toolchains")
+rules_shell_dependencies()
+rules_shell_toolchains()
+
+# Setup Scala
+load("@bazel_features//:deps.bzl", "bazel_features_deps")
+bazel_features_deps()
+
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+scala_config(scala_version = "2.13.11")
+
+load("@io_bazel_rules_scala//scala:scala.bzl", "rules_scala_setup", "rules_scala_toolchain_deps_repositories")
+rules_scala_setup()
+rules_scala_toolchain_deps_repositories(fetch_sources = True)
+
+load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+scala_register_toolchains()
+
+load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
+scalatest_repositories()
+scalatest_toolchain()
 
 # Setup Chisel
 load(
