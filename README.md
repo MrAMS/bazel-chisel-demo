@@ -1,4 +1,4 @@
-# A simple example of building Chisel with Bazel
+# An example of building Chisel with Bazel
 
 ## Prerequisite
 
