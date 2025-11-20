@@ -7,40 +7,58 @@ on:
       - 'LICENSE'
 
 jobs:
-  test:
-    name: Test on ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+  generate:
+    name: Generate Verilog
+    runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.15.0
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}
+          repository-cache: true
+      
+      - name: Emit Verilog
+        run: make gen
 
-    - name: checkout code
-      uses: actions/checkout@v4
+  simulate:
+    name: Run Simulations
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.15.0
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}-sim
+          repository-cache: true
+      
+      - name: Run Simulations
+        run: make run
+      
+      - name: Debug Simulations
+        run: make debug
 
-    - name: install bazel
-      uses: bazel-contrib/setup-bazel@0.15.0
-      with:
-        # Avoid downloading Bazel every time.
-        bazelisk-cache: true
-        # Store build cache per workflow.
-        disk-cache: ${{ github.workflow }}
-        # Share repository cache between workflows.
-        repository-cache: true
-
-    - name: Emit Verilog
-      run: |
-        make gen
-    
-    - name: Run Simulations
-      run: |
-        make run
-    
-    - name: Debug Simulations
-      run: |
-        make debug
-
-    - name: EDA Flow
-      run: |
-        make eda
+  eda:
+    name: EDA Flow
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.15.0
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}-eda
+          repository-cache: true
+      
+      - name: EDA Flow
+        run: make eda
