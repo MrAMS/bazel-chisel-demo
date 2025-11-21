@@ -85,12 +85,26 @@ load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "
 scalatest_repositories()
 scalatest_toolchain()
 
-# Setup Chisel
-load(
-    "//rules:chisel.bzl",
-    "chisel_deps",
+# # Setup Chisel
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+maven_install(
+    name = "maven",
+    artifacts = [
+        "org.chipsalliance:chisel_2.13:7.1.1",
+        "org.chipsalliance:chisel-plugin_2.13.11:7.1.1",
+        "org.scalatest:scalatest_2.13:3.2.19",
+        "edu.berkeley.cs:firrtl_2.13:5.0.0",
+        "org.antlr:antlr4-runtime:4.13.1",
+        "net.java.dev.jna:jna:5.14.0",
+    ],
+    repositories = [
+        "https://maven.aliyun.com/repository/public",
+        "https://repo1.maven.org/maven2",
+    ],
+    fetch_sources = True,
 )
-chisel_deps()
 
 load(
     "@rules_foreign_cc//foreign_cc:repositories.bzl",

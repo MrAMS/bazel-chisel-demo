@@ -1,7 +1,7 @@
 package demo
 
 import chisel3._
-import _root_.circt.stage.{ChiselStage}
+import _root_.circt.stage.ChiselStage
 
 class Counter(dataBits: Int) extends Module {
   val io = IO(new Bundle {
