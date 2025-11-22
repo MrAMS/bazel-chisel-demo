@@ -34,6 +34,9 @@ bazel_features_deps()
 load("@rules_cc//cc:extensions.bzl", "compatibility_proxy_repo")
 compatibility_proxy_repo()
 
+load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
+rules_pkg_dependencies()
+
 # Protobuf
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies")
 load("@rules_proto//proto:toolchains.bzl", "rules_proto_toolchains")
