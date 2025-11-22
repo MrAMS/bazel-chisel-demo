@@ -2,7 +2,7 @@
 
 ## Prerequisite
 
-Bazel 6.5.0 (Linux)
+Bazel 7.4.1 (Linux)
 
 ## Usage
 
