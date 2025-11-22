@@ -28,6 +28,12 @@ load(
 )
 download_deps_repos()
 
+load("@bazel_features//:deps.bzl", "bazel_features_deps")
+bazel_features_deps()
+
+load("@rules_cc//cc:extensions.bzl", "compatibility_proxy_repo")
+compatibility_proxy_repo()
+
 # Protobuf
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies")
 load("@rules_proto//proto:toolchains.bzl", "rules_proto_toolchains")
@@ -67,23 +73,34 @@ load("@rules_shell//shell:repositories.bzl", "rules_shell_dependencies", "rules_
 rules_shell_dependencies()
 rules_shell_toolchains()
 
+# Setup Mezel (a Scala BSP)
+load("@mezel//rules:load_mezel.bzl", "load_mezel")
+load_mezel()
+
 # Setup Scala
-load("@bazel_features//:deps.bzl", "bazel_features_deps")
-bazel_features_deps()
 
+load("@rules_java//java:rules_java_deps.bzl", "rules_java_dependencies")
+rules_java_dependencies()
+
+load("@io_bazel_rules_scala//scala:deps.bzl", "rules_scala_dependencies")
+
+rules_scala_dependencies()
 load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-scala_config(scala_version = "2.13.11")
 
-load("@io_bazel_rules_scala//scala:scala.bzl", "rules_scala_setup", "rules_scala_toolchain_deps_repositories")
-rules_scala_setup()
-rules_scala_toolchain_deps_repositories(fetch_sources = True)
+scala_config(scala_version = "2.13.17")
 
-load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+load(
+    "@io_bazel_rules_scala//scala:toolchains.bzl",
+    "scala_register_toolchains",
+    "scala_toolchains",
+)
+
+scala_toolchains(
+    scalafmt = True,
+    scalatest = True,
+)
+
 scala_register_toolchains()
-
-load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
-scalatest_repositories()
-scalatest_toolchain()
 
 # # Setup Chisel
 
@@ -92,12 +109,10 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
     name = "maven",
     artifacts = [
-        "org.chipsalliance:chisel_2.13:7.1.1",
-        "org.chipsalliance:chisel-plugin_2.13.11:7.1.1",
+        "org.chipsalliance:chisel_2.13:7.3.0",
+        "org.chipsalliance:chisel-plugin_2.13.3:7.3.0",
         "org.scalatest:scalatest_2.13:3.2.19",
         "edu.berkeley.cs:firrtl_2.13:5.0.0",
-        "org.antlr:antlr4-runtime:4.13.1",
-        "net.java.dev.jna:jna:5.14.0",
     ],
     repositories = [
         "https://maven.aliyun.com/repository/public",
@@ -105,6 +120,8 @@ maven_install(
     ],
     fetch_sources = True,
 )
+
+# Setup rules_foreign_cc
 
 load(
     "@rules_foreign_cc//foreign_cc:repositories.bzl",

@@ -21,7 +21,7 @@ load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 SCALA_COPTS = [
     "-Ymacro-annotations",
-    "-Xplugin:$(execpath @maven//:org_chipsalliance_chisel_plugin_2_13_11)",
+    "-Xplugin:$(execpath @maven//:org_chipsalliance_chisel_plugin_2_13_3)",
     "-explaintypes",
     "-feature",
     "-language:reflectiveCalls",
@@ -51,7 +51,7 @@ def chisel_library(
             "@maven//:org_chipsalliance_chisel_2_13",
         ] + deps,
         plugins = [
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_11",
+            "@maven//:org_chipsalliance_chisel_plugin_2_13_3",
         ],
         resources = resources,
         resource_strip_prefix = resource_strip_prefix,
@@ -74,7 +74,7 @@ def chisel_binary(
             "@maven//:org_chipsalliance_chisel_2_13",
         ] + deps,
         plugins = [
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_11",
+            "@maven//:org_chipsalliance_chisel_plugin_2_13_3",
         ],
         scalacopts = SCALA_COPTS,
         visibility = visibility,
@@ -96,12 +96,9 @@ def chisel_test(
             "@maven//:org_chipsalliance_chisel_2_13",
             "@maven//:org_scalatest_scalatest_2_13",
             "@maven//:edu_berkeley_cs_firrtl_2_13",
-
-            "@maven//:org_antlr_antlr4_runtime",
-            "@maven//:net_java_dev_jna",
         ] + deps,
         plugins = [
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_11",
+            "@maven//:org_chipsalliance_chisel_plugin_2_13_3",
         ],
         data = [
             "//third_party/llvm-firtool:firtool",

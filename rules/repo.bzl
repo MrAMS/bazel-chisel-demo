@@ -43,12 +43,15 @@ def download_deps_repos():
         patch_args = ["-p1"],
     )
 
+    # 2024-9-5
     maybe(
         http_archive,
-        name = "rules_java",
-        urls = ["https://github.com/bazelbuild/rules_java/archive/981f06c3d2bd10225e85209904090eb7b5fb26bd.zip"],
-        sha256 = "7979ece89e82546b0dcd1dff7538c34b5a6ebc9148971106f0e3705444f00665",
-        strip_prefix = "rules_java-981f06c3d2bd10225e85209904090eb7b5fb26bd",
+        name = "rules_license",
+        urls = [
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_license/releases/download/1.0.0/rules_license-1.0.0.tar.gz",
+            "https://github.com/bazelbuild/rules_license/releases/download/1.0.0/rules_license-1.0.0.tar.gz",
+        ],
+        sha256 = "26d4021f6898e23b82ef953078389dd49ac2b5618ac564ade4ef87cced147b38",
     )
 
     maybe(
@@ -61,14 +64,23 @@ def download_deps_repos():
         ],
     )
 
+    # maybe(
+    #     http_archive,
+    #     name = "com_google_protobuf",
+    #     urls = ["https://github.com/protocolbuffers/protobuf/releases/download/v26.1/protobuf-26.1.tar.gz"],
+    #     strip_prefix = "protobuf-26.1",
+    #     sha256 = "4fc5ff1b2c339fb86cd3a25f0b5311478ab081e65ad258c6789359cd84d421f8",
+    #     patch_args = ["-p1"],
+    #     patches = ["@com_google_ortools//patches:protobuf-v26.1.patch"],
+    # )
+
+    # 2025-5-20
     maybe(
         http_archive,
-        name = "com_google_protobuf",
-        urls = ["https://github.com/protocolbuffers/protobuf/releases/download/v26.1/protobuf-26.1.tar.gz"],
-        strip_prefix = "protobuf-26.1",
-        sha256 = "4fc5ff1b2c339fb86cd3a25f0b5311478ab081e65ad258c6789359cd84d421f8",
-        patch_args = ["-p1"],
-        patches = ["@com_google_ortools//patches:protobuf-v26.1.patch"],
+        name = "bazel_features",
+        sha256 = "a660027f5a87f13224ab54b8dc6e191693c554f2692fcca46e8e29ee7dabc43b",
+        strip_prefix = "bazel_features-1.30.0",
+        url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.30.0/bazel_features-v1.30.0.tar.gz",
     )
 
     maybe(
@@ -79,20 +91,32 @@ def download_deps_repos():
         url = "https://github.com/bazelbuild/rules_python/releases/download/0.33.2/rules_python-0.33.2.tar.gz",
     )
 
-    maybe(
-        http_archive,
-        name = "bazel_features",
-        sha256 = "07271d0f6b12633777b69020c4cb1eb67b1939c0cf84bb3944dc85cc250c0c01",
-        strip_prefix = "bazel_features-1.38.0",
-        url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.38.0/bazel_features-v1.38.0.tar.gz",
-    )
-
+    # 2025-11-5
     maybe(
         http_archive,
         name = "rules_cc",
-        sha256 = "2037875b9a4456dce4a79d112a8ae885bbc4aad968e6587dca6e64f3a0900cdf",
-        strip_prefix = "rules_cc-0.0.9",
-        urls = ["https://github.com/bazelbuild/rules_cc/releases/download/0.0.9/rules_cc-0.0.9.tar.gz"],
+        sha256 = "a2fdfde2ab9b2176bd6a33afca14458039023edb1dd2e73e6823810809df4027",
+        strip_prefix = "rules_cc-0.2.14",
+        url = "https://github.com/bazelbuild/rules_cc/releases/download/0.2.14/rules_cc-0.2.14.tar.gz",
+    )
+
+    # 2025-11-13
+    maybe(
+        http_archive,
+        name = "com_google_protobuf",
+        urls = ["https://github.com/protocolbuffers/protobuf/releases/download/v33.1/protobuf-33.1.tar.gz"],
+        strip_prefix = "protobuf-33.1",
+        sha256 = "fda132cb0c86400381c0af1fe98bd0f775cb566cb247cdcc105e344e00acc30e"
+    )
+
+    # 2025-11-04
+    maybe(
+        http_archive,
+        name = "rules_java",
+        urls = [
+            "https://github.com/bazelbuild/rules_java/releases/download/9.0.0/rules_java-9.0.0.tar.gz",
+        ],
+        sha256 = "19008f8a85125c9476ef37b6ad945f665d7178aaab3746f7962917ccd87d2477",
     )
 
     # see https://github.com/hdl/bazel_rules_hdl/pull/426
@@ -109,14 +133,12 @@ def download_deps_repos():
     )
 
     # See https://github.com/bazelbuild/rules_scala/releases for up to date version information.
-    rules_scala_version = "73719cbf88134d5c505daf6c913fe4baefd46917"
-    maybe(
-        http_archive,
+    # 2025-10-23
+    http_archive(
         name = "io_bazel_rules_scala",
-        sha256 = "48124dfd3387c72fd13d3d954b246a5c34eb83646c0c04a727c9a1ba98e876a6",
-        strip_prefix = "rules_scala-%s" % rules_scala_version,
-        type = "zip",
-        url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
+        sha256 = "614eccce470676c26d70ae6ed3c5dee429022ec3e7a898767b5f83074a41ac98",
+        strip_prefix = "rules_scala-7.1.3",
+        url = "https://github.com/bazelbuild/rules_scala/releases/download/v7.1.3/rules_scala-v7.1.3.tar.gz",
     )
 
     maybe(
@@ -152,5 +174,15 @@ def download_deps_repos():
         sha256 = "e6b87c89bd0b27039e3af2c5da01147452f240f75d505f5b6880874f31036307",
         strip_prefix = "rules_shell-0.6.1",
         url = "https://github.com/bazelbuild/rules_shell/releases/download/v0.6.1/rules_shell-v0.6.1.tar.gz",
+    )
+
+    # a Scala BSP implementation for Bazel, see https://github.com/ValdemarGr/mezel
+    mezel_version = "eb871ad6c2dffd3a059ea6ebc9f25a22867cf6d5"
+    http_archive(
+        name = "mezel",
+        sha256 = "00b3585f329aca7070e6ccd76ce082f470cd1734e971950ae021d20fb3b32164",
+        strip_prefix = "mezel-%s" % mezel_version,
+        type = "zip",
+        url = "https://github.com/valdemargr/mezel/archive/%s.zip" % mezel_version,
     )
 
