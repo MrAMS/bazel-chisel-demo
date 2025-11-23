@@ -32,3 +32,4 @@ Bazel automatically handles all dependencies. Versions used:
 
 - On the first build Bazel will fetch many dependencies from GitHub; ensure a stable network connection.
 - The EDA flow (`make eda`) is RAM & CPU intensive. Use `--jobs=N` on Bazel commands to limit concurrent jobs if resources are constrained.
+- [Zed](https://github.com/zed-industries/zed) + [Metals](https://github.com/scalameta/metals-zed) is recommended for development (2025-11-23).
