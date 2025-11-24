@@ -1,5 +1,7 @@
 # An example of building Chisel with Bazel
 
+[![RTL CI](https://github.com/MrAMS/bazel-chisel-demo/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/MrAMS/bazel-chisel-demo/actions/workflows/ci.yaml)
+
 ## Prerequisite
 
 Bazel 6.5.0 (Linux)
