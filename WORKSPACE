@@ -104,7 +104,11 @@ maven_install(
         "https://repo1.maven.org/maven2",
     ],
     fetch_sources = True,
+    maven_install_json = "@//:maven_install.json",
 )
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+pinned_maven_install()
 
 load(
     "@rules_foreign_cc//foreign_cc:repositories.bzl",
