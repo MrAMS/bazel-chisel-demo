@@ -17,7 +17,7 @@ synthesize_rtl(
 
 place_and_route(
     name = flow_name + "_place_and_route",
-    sdc="constraint.sdc",
+    sdc=sdc_path,
     core_padding_microns = 2,
     die_height_microns = 150,
     die_width_microns = 150,
