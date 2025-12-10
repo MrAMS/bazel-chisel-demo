@@ -21,4 +21,3 @@ toolchain(
     toolchain = ":semanticdb_toolchain_impl",
     toolchain_type = "@rules_scala//scala:toolchain_type",
 )
-

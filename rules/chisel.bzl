@@ -21,7 +21,6 @@ load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 SCALA_COPTS = [
     "-Ymacro-annotations",
-    "-Xplugin:$(execpath @maven//:org_chipsalliance_chisel_plugin_2_13_11)",
     "-explaintypes",
     "-feature",
     "-language:reflectiveCalls",
@@ -96,7 +95,6 @@ def chisel_test(
             "@maven//:org_chipsalliance_chisel_2_13",
             "@maven//:org_scalatest_scalatest_2_13",
             "@maven//:edu_berkeley_cs_firrtl_2_13",
-
             "@maven//:org_antlr_antlr4_runtime",
             "@maven//:net_java_dev_jna_jna",
         ] + deps,
