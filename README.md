@@ -9,8 +9,7 @@ A demonstration of building Chisel RTL with Bazel, including complete ASIC desig
 - ✅ **Chisel RTL** - Hardware design in Scala
 - ✅ **Verilator** - Cycle-accurate simulation
 - ✅ **EDA Flow** - Complete RTL to GDS using OpenROAD
-- ✅ **Sky130 PDK** - Google Skywater 130nm standard cells
-- ✅ **Bazelmod** - Modern Bazel 8.0.0 with MODULE.bazel
+- ✅ **Bazelmod** - Modern Bazel with MODULE.bazel
 
 ## Quick Start
 

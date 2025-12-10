@@ -135,11 +135,10 @@ git_override(
     remote = "https://github.com/The-OpenROAD-Project/bazel-orfs.git",
 )
 
-# Use amorphic-io fork with Bazel 8 support
 git_override(
     module_name = "rules_hdl",
-    commit = "297b43ca9b93ea558139e6fdfd42d90ac9a0eef6",
-    remote = "https://github.com/amorphic-io/rules_hdl",
+    commit = "9de61368b85e4d2f67049c444c90d2270a352ed2",
+    remote = "https://github.com/MrAMS/bazel_rules_hdl",
 )
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
