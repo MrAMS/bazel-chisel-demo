@@ -16,8 +16,6 @@ package(default_visibility = ["//visibility:public"])
 
 load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 
-exports_files(glob(["org.chipsalliance/llvm-firtool/linux-x64/bin/**"]))
-
 sh_binary(
     name = "firtool",
     srcs = [":firtool.sh"],

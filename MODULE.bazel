@@ -6,13 +6,21 @@ module(
 
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# Hedron's Compile Commands Extractor for Bazel
+http_archive(
+    name = "hedron_compile_commands",
+    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/0e990032f3c5a866e72615cf67e5ce22186dcb97.tar.gz",
+    strip_prefix = "bazel-compile-commands-extractor-0e990032f3c5a866e72615cf67e5ce22186dcb97",
+    sha256 = "2b3ee8bba2df4542a508b0289727b031427162b4cd381850f89b406445c17578",
+)
+
 include("//rules:rules_hdl_overrides.MODULE.bazel") # rules_hdl, see https://github.com/hdl/bazel_rules_hdl/issues/336
 
 # Shell
 bazel_dep(name = "rules_shell", version = "0.6.1")
 
 # Scala
-bazel_dep(name = "rules_scala", version = "7.0.0") 
+bazel_dep(name = "rules_scala", version = "7.0.0")
 
 scala_config = use_extension(
     "@rules_scala//scala/extensions:config.bzl",
@@ -38,22 +46,22 @@ maven.install(
     artifacts = [
         # Scala 基础
         "org.scala-lang:scala-reflect:2.13.11",
-        
+
         # 核心库
         "com.thoughtworks.paranamer:paranamer:2.8",
         "org.antlr:antlr4-runtime:4.13.1",
         "net.java.dev.jna:jna:5.14.0",
-        
+
         # json4s 系列（Chisel 关键依赖）
         "org.json4s:json4s-ast_2.13:4.0.7",
         "org.json4s:json4s-scalap_2.13:4.0.7",
         "org.json4s:json4s-core_2.13:4.0.7",
         "org.json4s:json4s-native_2.13:4.0.7",
-        
+
         # Apache Commons
         "org.apache.commons:commons-lang3:3.11",
         "org.apache.commons:commons-text:1.10.0",
-        
+
         # 其他 Scala 库
         "com.github.scopt:scopt_2.13:4.1.0",
         "net.jcazevedo:moultingyaml_2.13:0.4.2",
@@ -63,12 +71,12 @@ maven.install(
         "com.lihaoyi:upickle_2.13:3.3.1",
         "com.outr:moduload_2.13:1.1.7",
         "com.outr:scribe_2.13:3.15.2",
-        
+
         # Chisel 7.1.1
         "org.chipsalliance:chisel_2.13:7.1.1",
         "org.chipsalliance:chisel-plugin_2.13.6:7.1.1",
         "org.chipsalliance:firtool-resolver_2.13:2.0.1",
-        
+
         # FIRRTL 和测试
         "edu.berkeley.cs:firrtl_2.13:5.0.0",
         "org.scalatest:scalatest_2.13:3.2.19",
