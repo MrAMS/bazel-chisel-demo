@@ -19,17 +19,9 @@ load("@rules_hdl//verilator:defs.bzl", "verilator_cc_library")
 load("@rules_hdl//verilog:providers.bzl", "verilog_library")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
-load(
-    "@rules_scala//scala:scala_cross_version.bzl",
-    "default_maven_server_urls",
-)
-load(
-    "@rules_scala//scala:scala_maven_import_external.bzl",
-    "scala_maven_import_external",
-)
-
 SCALA_COPTS = [
     "-Ymacro-annotations",
+    "-Xplugin:$(execpath @maven//:org_chipsalliance_chisel_plugin_2_13_11)",
     "-explaintypes",
     "-feature",
     "-language:reflectiveCalls",
@@ -56,11 +48,10 @@ def chisel_library(
         name = name,
         srcs = srcs,
         deps = [
-            "//rules/lib:chisel_lib",
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_6",
+            "@maven//:org_chipsalliance_chisel_2_13",
         ] + deps,
         plugins = [
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_6_7_1_1",
+            "@maven//:org_chipsalliance_chisel_plugin_2_13_11",
         ],
         resources = resources,
         resource_strip_prefix = resource_strip_prefix,
@@ -80,11 +71,10 @@ def chisel_binary(
         srcs = srcs,
         main_class = main_class,
         deps = [
-            "//rules/lib:chisel_lib",
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_6",
+            "@maven//:org_chipsalliance_chisel_2_13",
         ] + deps,
         plugins = [
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_6_7_1_1",
+            "@maven//:org_chipsalliance_chisel_plugin_2_13_11",
         ],
         scalacopts = SCALA_COPTS,
         visibility = visibility,
@@ -103,15 +93,15 @@ def chisel_test(
         name = scalatest_name,
         srcs = srcs,
         deps = [
-            "//rules/lib:chisel_lib",
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_6",
+            "@maven//:org_chipsalliance_chisel_2_13",
             "@maven//:org_scalatest_scalatest_2_13",
             "@maven//:edu_berkeley_cs_firrtl_2_13",
+
             "@maven//:org_antlr_antlr4_runtime",
             "@maven//:net_java_dev_jna_jna",
         ] + deps,
         plugins = [
-            "@maven//:org_chipsalliance_chisel_plugin_2_13_6_7_1_1",
+            "@maven//:org_chipsalliance_chisel_plugin_2_13_11",
         ],
         data = [
             "//third_party/llvm-firtool:firtool",
@@ -156,7 +146,7 @@ def chisel_cc_library(
         gen_flags = [],
         extra_outs = []):
     """Generates a C++ library from Chisel code using Verilator.
-    
+
     Args:
         name: Name of the target
         chisel_lib: Chisel library dependency

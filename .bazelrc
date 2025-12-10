@@ -2,6 +2,19 @@
 common --registry=https://bcr.bazel.build
 common --registry=https://raw.githubusercontent.com/UebelAndre/bazel-central-registry/verilator
 
+# Performance optimizations for faster dependency resolution and builds
+# Skip direct dependency version checking to avoid 13 WARNING messages
+common --check_direct_dependencies=off
+
+# Enable repository cache to speed up external dependency downloads
+build --repository_cache=~/.cache/bazel/repository_cache
+
+# Reduce lock contention during builds
+build --experimental_repository_cache_hardlinks
+
+# Enable bzlmod lockfile for faster subsequent runs
+common --lockfile_mode=update
+
 build --action_env=BAZEL_CXXOPTS="-std=c++17"
 build --cxxopt='-std=c++17'
 build --conlyopt='-std=gnu11'

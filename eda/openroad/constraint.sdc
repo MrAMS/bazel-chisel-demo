@@ -1,5 +1,3 @@
-current_design verilog_counter
-
 set clk_name  core_clock
 set clk_port_name clock
 set clk_period 10000
