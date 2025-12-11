@@ -24,6 +24,12 @@ place_and_route(
     min_pin_distance = "2",
     placement_density = "0.7",
     synthesized_rtl = ":" + flow_name + "_synth",
+    # STA-1173: default_fanout_load is 0.0
+    # STA-1140: library sky130_fd_sc_hd__xxx already exists
+    # ODB-0220: SOURCE statement is obsolete
+    # ORD-0046: -defer_connection has been deprecated
+    # PDN-1024: -verbose has been deprecated
+    suppress_warnings = ["STA-1173", "STA-1140", "ODB-0220", "ORD-0046", "PDN-1024"],
 )
 
 gds_write(
