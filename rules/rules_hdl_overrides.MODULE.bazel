@@ -1,5 +1,3 @@
-git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
 bazel_dep(name = "platforms", version = "0.0.11")
 bazel_dep(name = "abseil-cpp", version = "20250127.1")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
@@ -59,86 +57,100 @@ bazel_dep(name = "googletest", version = "1.17.0", dev_dependency=True)
 
 # Custom patches with our fixes. Some of these are transitive deps.
 # It's still necessary to override them here.
-git_override(
+archive_override(
     module_name = "p7zip",
-    commit = "be778d8e29b3f21bd3b0c661be0d4f4ab49d3ffa",
-    remote = "https://github.com/amorphic-io/7zip.git",
+    urls = ["https://github.com/amorphic-io/7zip/archive/be778d8e29b3f21bd3b0c661be0d4f4ab49d3ffa.tar.gz"],
+    strip_prefix = "7zip-be778d8e29b3f21bd3b0c661be0d4f4ab49d3ffa",
+    integrity = "sha256-f1p8RH5gVFqbKYLhUNMrnFNdihGltL2qb7lzE2/FPh4=",
 )
-git_override(
+archive_override(
     module_name = "prjtrellis",
-    commit = "3332d029295a8e424969126f5c61a5ea111882a8",
-    remote = "https://github.com/amorphic-io/prjtrellis.git",
+    urls = ["https://github.com/amorphic-io/prjtrellis/archive/3332d029295a8e424969126f5c61a5ea111882a8.tar.gz"],
+    strip_prefix = "prjtrellis-3332d029295a8e424969126f5c61a5ea111882a8",
+    integrity = "sha256-qCxhfMuBaTBGNFUg7Q4i9jW/+9Cv9ITAzyA17NcUs/A=",
 )
-git_override(
+archive_override(
     module_name = "icestorm",
-    commit = "85fd1682b58581b82d1d14f63c089fb033177c21",
-    remote = "https://github.com/amorphic-io/icestorm.git",
+    urls = ["https://github.com/amorphic-io/icestorm/archive/85fd1682b58581b82d1d14f63c089fb033177c21.tar.gz"],
+    strip_prefix = "icestorm-85fd1682b58581b82d1d14f63c089fb033177c21",
+    integrity = "sha256-3f+I4zc4MSJ3LRQ4j4w6Gon9byBy4YJrkHRQyaArueE=",
 )
-git_override(
+archive_override(
     module_name = "nextpnr",
-    commit = "2ab1f5e7e6be52e2a59347cace86f5c16348a115",
-    remote = "https://github.com/amorphic-io/nextpnr.git",
+    urls = ["https://github.com/amorphic-io/nextpnr/archive/2ab1f5e7e6be52e2a59347cace86f5c16348a115.tar.gz"],
+    strip_prefix = "nextpnr-2ab1f5e7e6be52e2a59347cace86f5c16348a115",
+    integrity = "sha256-VUeMV4jdwGfioBAWvbGv8nK6Xxd98i8yr3VYS4b8xfE=",
 )
-git_override(
+archive_override(
     module_name = "cxxopts",
-    commit = "0fc4bdab71ea25e3623e2b609b4e5b2bd20bb938",
-    remote = "https://github.com/amorphic-io/cxxopts.git",
+    urls = ["https://github.com/amorphic-io/cxxopts/archive/0fc4bdab71ea25e3623e2b609b4e5b2bd20bb938.tar.gz"],
+    strip_prefix = "cxxopts-0fc4bdab71ea25e3623e2b609b4e5b2bd20bb938",
+    integrity = "sha256-eU41+L7oMG5cilOjOPgb9kjVcfiaq1YVwAU+bNd/NOs=",
 )
 archive_override(
     module_name = "yosys",
     integrity = "sha256-iBIJaYqUIxMIwteRmQa2bfkT2cyMHvf28PpXx3ngdYg=",
     urls = ["https://github.com/MrAMS/yosys/releases/download/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591.tar.gz"]
 )
-git_override(
+archive_override(
     module_name = "swig",
-    commit = "52ed25274e9042611bda40c42e48aae8b6748686",
-    remote = "https://github.com/amorphic-io/swig.git",
+    urls = ["https://github.com/amorphic-io/swig/archive/52ed25274e9042611bda40c42e48aae8b6748686.tar.gz"],
+    strip_prefix = "swig-52ed25274e9042611bda40c42e48aae8b6748686",
+    integrity = "sha256-R4H7DZrQ1U1Mpzwu1yWxzuoChbv0CZDzsullV5ezDfw=",
 )
-git_override(
+archive_override(
     module_name = "iverilog",
-    commit = "760dfa28d8f863164a2fbbaabebd1202850249c8",
-    remote = "https://github.com/amorphic-io/iverilog.git",
+    urls = ["https://github.com/amorphic-io/iverilog/archive/760dfa28d8f863164a2fbbaabebd1202850249c8.tar.gz"],
+    strip_prefix = "iverilog-760dfa28d8f863164a2fbbaabebd1202850249c8",
+    integrity = "sha256-VjYcq0LbKBjmZ2NXOILJ1NjtUHg5PBHy1eV+63/BO90=",
 )
-git_override(
+archive_override(
     module_name = "lemon",
-    commit = "ed0844d7ec0152ff0664c51d02e2eab180acd293",
-    remote = "https://github.com/MrAMS/lemon",
+    urls = ["https://github.com/MrAMS/lemon/archive/ed0844d7ec0152ff0664c51d02e2eab180acd293.tar.gz"],
+    strip_prefix = "lemon-ed0844d7ec0152ff0664c51d02e2eab180acd293",
+    integrity = "sha256-iL3mJCk575NR9qbdL5WaOPOyH2k7EXfZ4IiNFrlZcn8=",
 )
-git_override(
+archive_override(
     module_name = "abc",
-    commit = "2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc",
-    remote = "https://github.com/amorphic-io/abc",
+    urls = ["https://github.com/amorphic-io/abc/archive/2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc.tar.gz"],
+    strip_prefix = "abc-2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc",
+    integrity = "sha256-deCu+3tGmpIhq8r1xR/4l8G2odK8P+3eRviuimJk+2g=",
 )
-git_override(
+archive_override(
     module_name = "ncurses",
-    commit = "f918fafc9f7aeb1745d02e7978597abf8e580de2",
-    remote = "https://github.com/amorphic-io/ncurses",
+    urls = ["https://github.com/amorphic-io/ncurses/archive/f918fafc9f7aeb1745d02e7978597abf8e580de2.tar.gz"],
+    strip_prefix = "ncurses-f918fafc9f7aeb1745d02e7978597abf8e580de2",
+    integrity = "sha256-A/JhotIW/4KQeYQMVqkgt5I6PG4zxRArBgOp255VI5c=",
 )
-git_override(
+archive_override(
     module_name = "llvm-project",
-    commit = "93c4a9c7b9d2fef50ad97c80efa54ccaed7df0c8",
-    remote = "https://github.com/amorphic-io/llvm-project",
+    urls = ["https://github.com/amorphic-io/llvm-project/archive/93c4a9c7b9d2fef50ad97c80efa54ccaed7df0c8.tar.gz"],
+    strip_prefix = "llvm-project-93c4a9c7b9d2fef50ad97c80efa54ccaed7df0c8",
+    integrity = "sha256-EyLJa4edCj4wX9LZHVnyEy0OhDugkPGXsqovOZFNAmU=",
 )
-git_override(
+archive_override(
     module_name = "tcl",
-    commit = "e285aca41d39e84ab1753f125b095d65a0e15640",
-    remote = "https://github.com/amorphic-io/tcl.git",
+    urls = ["https://github.com/amorphic-io/tcl/archive/e285aca41d39e84ab1753f125b095d65a0e15640.tar.gz"],
+    strip_prefix = "tcl-e285aca41d39e84ab1753f125b095d65a0e15640",
+    integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
 )
 archive_override(
     module_name = "openroad",
     integrity = "sha256-R52OM3qyOjgvZQhfRoG34eWagfWzA5fz308QDT4OrPw=",
     urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b.tar.gz"]
 )
-git_override(
+archive_override(
     module_name = "bazel-orfs",
-    commit = "126765508161956f8f82ae169084da0235230637",
-    remote = "https://github.com/The-OpenROAD-Project/bazel-orfs.git",
+    urls = ["https://github.com/The-OpenROAD-Project/bazel-orfs/archive/126765508161956f8f82ae169084da0235230637.tar.gz"],
+    strip_prefix = "bazel-orfs-126765508161956f8f82ae169084da0235230637",
+    integrity = "sha256-zHtNue9q5rivqjcSBtufyLhgZp3LkD/m04J+7MV4w2U=",
 )
 
-git_override(
+archive_override(
     module_name = "rules_hdl",
-    commit = "2d1c16a122a8110056eccd3d78740a84d7af753e",
-    remote = "https://github.com/MrAMS/bazel_rules_hdl",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/2d1c16a122a8110056eccd3d78740a84d7af753e.tar.gz"],
+    strip_prefix = "bazel_rules_hdl-2d1c16a122a8110056eccd3d78740a84d7af753e",
+    integrity = "sha256-aqV6Qux0+dtjo8F+ZR9+HkeJKr9NWH4GtDh6cz2rG5g=",
 )
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
