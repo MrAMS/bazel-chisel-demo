@@ -16,6 +16,15 @@ A demonstration of building Chisel RTL with Bazel, including complete ASIC desig
 ### Prerequisites
 
 - Bazel 8.0.0 (Linux x86_64)
+- JDK
+
+Bazel automatically handles following dependencies:
+- Scala 2.13.17
+- Chisel 7.1.1 (2025-09-28)
+- bazel_rules_hdl (2025-12-10)
+  - Verilator
+  - OpenROAD
+  - Yosys
 
 ### Usage
 
@@ -29,25 +38,20 @@ make run
 # Debug with waveforms (GTKWave)
 make debug
 
-# EDA flow - RTL to GDS (takes ~30 min first time)
+# Run the OpenRoad EDA flow to generate gds (PDK: google skywater 130nm sc_hd)
 make eda
 ```
 
 ## Notes
 
-- This project uses **Bazelmod** (MODULE.bazel) instead of deprecated WORKSPACE
-- First build downloads ~2GB of dependencies
+- First build downloads ~2GB of dependencies from GitHub, ensure a stable network connection.
 - Use `--jobs=N` to limit concurrent jobs if RAM constrained:
   ```bash
   bazel build --jobs=8 //eda/openroad:openroad_counter_gds_write
   ```
-- EDA flow requires 8GB+ RAM and takes ~30 minutes on first build
+- The EDA flow (`make eda`) is RAM & CPU intensive. Use --jobs=N on Bazel commands to limit concurrent jobs if resources are constrained.
+- [Zed](https://github.com/zed-industries/zed) + [Metals](https://github.com/scalameta/metals-zed) + GTKWave is recommended for development (2025-11-23).
 
 ## License
 
 Mozilla Public License Version 2.0 - See [LICENSE](LICENSE)
-
-## Recommended Tools
-
-- [Zed](https://github.com/zed-industries/zed) + [Metals](https://github.com/scalameta/metals-zed) for Scala development
-- [GTKWave](http://gtkwave.sourceforge.net/) for waveform viewing
