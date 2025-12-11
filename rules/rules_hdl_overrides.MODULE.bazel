@@ -106,9 +106,9 @@ archive_override(
 )
 archive_override(
     module_name = "lemon",
-    urls = ["https://github.com/MrAMS/lemon/archive/ed0844d7ec0152ff0664c51d02e2eab180acd293.tar.gz"],
-    strip_prefix = "lemon-ed0844d7ec0152ff0664c51d02e2eab180acd293",
-    integrity = "sha256-iL3mJCk575NR9qbdL5WaOPOyH2k7EXfZ4IiNFrlZcn8=",
+    urls = ["https://github.com/amorphic-io/lemon/archive/c7b098040c9e0741e21f7229d98594386914bd9b.tar.gz"],
+    strip_prefix = "lemon-c7b098040c9e0741e21f7229d98594386914bd9b",
+    integrity = "sha256-+KVhjbPO5X7UDbY377jNy7yRGpUSj3ONhhr1qmF0Nmg=",
 )
 archive_override(
     module_name = "abc",
@@ -136,8 +136,8 @@ archive_override(
 )
 archive_override(
     module_name = "openroad",
+    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b.tar.gz"],
     integrity = "sha256-R52OM3qyOjgvZQhfRoG34eWagfWzA5fz308QDT4OrPw=",
-    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b.tar.gz"]
 )
 archive_override(
     module_name = "bazel-orfs",

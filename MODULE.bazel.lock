@@ -1461,7 +1461,7 @@
     },
     "@@rules_hdl+//:extensions.bzl%hdl_ext": {
       "general": {
-        "bzlTransitiveDigest": "lv/xabniGa4szVqNZOCbx1yGJP64AXqaQGYm4icRt+I=",
+        "bzlTransitiveDigest": "fEdKYbwEextFITlb0yL7oWqnHXIDYORPjSYJPvkH9X0=",
         "usagesDigest": "O2JUGOJMlQrNVlTv+qBM041E5a4op2FABdpfCg0Crmw=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -1481,29 +1481,29 @@
           "com_google_skywater_pdk_sky130_fd_io": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:git.bzl%git_repository",
             "attributes": {
-              "commit": "7ec511f1a4689e174c63b3964d1ba8da9a3565e5",
-              "remote": "https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_io.git",
-              "shallow_since": "1606239275 -0800",
               "build_file_content": "\nload(\"@rules_hdl//dependency_support/com_google_skywater_pdk:declare_cell_library.bzl\", \"declare_cell_library\")\ndeclare_cell_library(\"com_google_skywater_pdk_sky130_fd_io\", \"sky130_fd_io\")\n",
-              "patches": [],
+              "commit": "7ec511f1a4689e174c63b3964d1ba8da9a3565e5",
               "patch_args": [
                 "-p1"
-              ]
+              ],
+              "patches": [],
+              "remote": "https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_io.git",
+              "shallow_since": "1606239275 -0800"
             }
           },
           "com_google_skywater_pdk_sky130_fd_sc_hd": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:git.bzl%git_repository",
             "attributes": {
-              "commit": "ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1",
-              "remote": "https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_sc_hd.git",
-              "shallow_since": "1605028103 -0800",
               "build_file_content": "\nload(\"@rules_hdl//dependency_support/com_google_skywater_pdk:declare_cell_library.bzl\", \"declare_cell_library\")\ndeclare_cell_library(\"com_google_skywater_pdk_sky130_fd_sc_hd\", \"sky130_fd_sc_hd\")\n",
+              "commit": "ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1",
+              "patch_args": [
+                "-p1"
+              ],
               "patches": [
                 "@@rules_hdl+//dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd:pdk.patch"
               ],
-              "patch_args": [
-                "-p1"
-              ]
+              "remote": "https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_sc_hd.git",
+              "shallow_since": "1605028103 -0800"
             }
           },
           "org_theopenroadproject_asap7_pdk": {
@@ -1520,25 +1520,25 @@
           "org_theopenroadproject_asap7_pdk_sc6t_26": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:git.bzl%git_repository",
             "attributes": {
+              "build_file": "@@rules_hdl+//dependency_support/org_theopenroadproject_asap7sc6t_26:bundled.BUILD.bazel",
               "commit": "f572bf760c8bdc853cbafd0742790aba0780089c",
-              "remote": "https://github.com/The-OpenROAD-Project/asap7sc6t_26",
-              "build_file": "@@rules_hdl+//dependency_support/org_theopenroadproject_asap7sc6t_26:bundled.BUILD.bazel"
+              "remote": "https://github.com/The-OpenROAD-Project/asap7sc6t_26"
             }
           },
           "org_theopenroadproject_asap7_pdk_sc7p5t_27": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:git.bzl%git_repository",
             "attributes": {
+              "build_file": "@@rules_hdl+//dependency_support/org_theopenroadproject_asap7sc7p5t_27:bundled.BUILD.bazel",
               "commit": "900f55ed8bef025f39edcc8b8be5e04a2c55c15a",
-              "remote": "https://github.com/The-OpenROAD-Project/asap7sc7p5t_27",
-              "build_file": "@@rules_hdl+//dependency_support/org_theopenroadproject_asap7sc7p5t_27:bundled.BUILD.bazel"
+              "remote": "https://github.com/The-OpenROAD-Project/asap7sc7p5t_27"
             }
           },
           "org_theopenroadproject_asap7_pdk_sc7p5t_28": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:git.bzl%git_repository",
             "attributes": {
+              "build_file": "@@rules_hdl+//dependency_support/org_theopenroadproject_asap7sc7p5t_28:bundled.BUILD.bazel",
               "commit": "d88477438935a5a388bd6294f682dc405c93c5d2",
-              "remote": "https://github.com/The-OpenROAD-Project/asap7sc7p5t_28",
-              "build_file": "@@rules_hdl+//dependency_support/org_theopenroadproject_asap7sc7p5t_28:bundled.BUILD.bazel"
+              "remote": "https://github.com/The-OpenROAD-Project/asap7sc7p5t_28"
             }
           }
         },
