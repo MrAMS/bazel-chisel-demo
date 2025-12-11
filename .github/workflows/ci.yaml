@@ -62,3 +62,20 @@ jobs:
 
       - name: EDA Flow
         run: make eda
+
+  compile_commands:
+    name: Clangd Compile Commands Extractor
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.15.0
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}
+          repository-cache: true
+
+      - name: Run Compile Commands Extractor
+        run: bazel run :refresh_compile_commands

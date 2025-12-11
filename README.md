@@ -40,6 +40,9 @@ make debug
 
 # Run the OpenRoad EDA flow to generate gds (PDK: google skywater 130nm sc_hd)
 make eda
+
+# generate compile_commands.json for clangd
+bazel run :refresh_compile_commands
 ```
 
 ## Notes
@@ -51,6 +54,7 @@ make eda
   ```
 - The EDA flow (`make eda`) is RAM & CPU intensive. Use --jobs=N on Bazel commands to limit concurrent jobs if resources are constrained.
 - [Zed](https://github.com/zed-industries/zed) + [Metals](https://github.com/scalameta/metals-zed) + GTKWave is recommended for development (2025-11-23).
+- You can check branch [WORKSPACE](https://github.com/MrAMS/bazel-chisel-demo/tree/WORKSPACE) for WORKSPACE workflow.
 
 ## License
 

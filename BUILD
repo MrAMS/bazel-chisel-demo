@@ -6,6 +6,7 @@ refresh_compile_commands(
     targets = {
         "//tests/verilator_cpp/...": "",
     },
+    exclude_external_sources = True,
 )
 
 # Custom Scala toolchain with SemanticDB enabled
