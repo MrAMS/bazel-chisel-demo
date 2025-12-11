@@ -137,7 +137,7 @@ git_override(
 
 git_override(
     module_name = "rules_hdl",
-    commit = "9de61368b85e4d2f67049c444c90d2270a352ed2",
+    commit = "2d1c16a122a8110056eccd3d78740a84d7af753e",
     remote = "https://github.com/MrAMS/bazel_rules_hdl",
 )
 
