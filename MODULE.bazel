@@ -16,6 +16,23 @@ git_override(
 
 include("//rules:rules_hdl_overrides.MODULE.bazel") # rules_hdl, see https://github.com/hdl/bazel_rules_hdl/issues/336
 
+# Configure LLVM toolchain (required by OpenROAD and other dependencies)
+bazel_dep(name = "toolchains_llvm", version = "1.5.0")
+llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm")
+llvm.toolchain(
+    llvm_version = "20.1.8",
+)
+use_repo(llvm, "llvm_toolchain")
+register_toolchains("@llvm_toolchain//:all")
+
+# QT for OpenROAD GUI
+bazel_dep(name = "qt-bazel")
+git_override(
+    module_name = "qt-bazel",
+    commit = "90cfbab79df93960c5493f8a75df6199fb80fe26",
+    remote = "https://github.com/The-OpenROAD-Project/qt_bazel_prebuilts",
+)
+
 # Shell
 bazel_dep(name = "rules_shell", version = "0.6.1")
 

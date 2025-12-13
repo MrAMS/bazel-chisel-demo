@@ -38,6 +38,26 @@ bazel_dep(name = "zlib", version = "1.3.1.bcr.5")
 bazel_dep(name = "or-tools", version = "9.12")
 bazel_dep(name = "readline", version = "8.2.bcr.2")
 bazel_dep(name = "verilator", version = "5.034")
+bazel_dep(name = "rules_verilator", version = "5.034")
+
+single_version_override(
+    module_name = "rules_verilator",
+    registry = "https://raw.githubusercontent.com/Pinata-Consulting/ascenium-registry/683f93e670a04f8d3d47316c42d197d8ac095a00/",
+    version = "5.034",
+)
+
+single_version_override(
+    module_name = "verilator",
+    registry = "https://raw.githubusercontent.com/Pinata-Consulting/ascenium-registry/683f93e670a04f8d3d47316c42d197d8ac095a00/",
+    version = "5.034.ar.1",
+)
+
+single_version_override(
+    module_name = "systemc",
+    registry = "https://raw.githubusercontent.com/Pinata-Consulting/ascenium-registry/683f93e670a04f8d3d47316c42d197d8ac095a00/",
+    version = "3.0.1",
+)
+
 bazel_dep(name = "lemon", version = "1.3.1")
 bazel_dep(name = "iverilog", version = "12.0.0")
 bazel_dep(name = "abc", version = "0.0.0-20250408-yosyshq.bcr.1")
@@ -136,11 +156,11 @@ archive_override(
     strip_prefix = "tcl-e285aca41d39e84ab1753f125b095d65a0e15640",
     integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
 )
-# TODO, have submodule, cannot use `archive_override`
+# OpenROAD from MrAMS fork with Bazel compatibility fixes
 archive_override(
     module_name = "openroad",
-    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251213-c1ad1e1/snapshot-20251213-c1ad1e1.tar.gz"],
-    integrity = "sha256-YKvWGYi8Fq2bI9MlKBNRmi3EWnifO/UmaQOVWeig9W4=",
+    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251213-8045df3/snapshot-20251213-8045df3.tar.gz"],
+    integrity = "sha256-dqm5iPTLyaiOud1Mtv8KnLUA5e91/3JoxO8WWLz+cHI=",
 )
 archive_override(
     module_name = "bazel-orfs",
@@ -148,12 +168,12 @@ archive_override(
     strip_prefix = "bazel-orfs-126765508161956f8f82ae169084da0235230637",
     integrity = "sha256-zHtNue9q5rivqjcSBtufyLhgZp3LkD/m04J+7MV4w2U=",
 )
-# TODO
+# Use MrAMS fork with OpenROAD archive_override and -quiet flag fix
 archive_override(
     module_name = "rules_hdl",
-    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/2d1c16a122a8110056eccd3d78740a84d7af753e.tar.gz"],
-    strip_prefix = "bazel_rules_hdl-2d1c16a122a8110056eccd3d78740a84d7af753e",
-    integrity = "sha256-aqV6Qux0+dtjo8F+ZR9+HkeJKr9NWH4GtDh6cz2rG5g=",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/3730c6818b5d8218063173132c1a8180037db9f6.tar.gz"],
+    strip_prefix = "bazel_rules_hdl-3730c6818b5d8218063173132c1a8180037db9f6",
+    integrity = "sha256-3y5nc8BrTdwK/w5+PsTVV/Sn4zb2ihSjBfRBazcMwXg=",
 )
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
