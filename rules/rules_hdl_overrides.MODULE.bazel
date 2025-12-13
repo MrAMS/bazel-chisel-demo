@@ -48,9 +48,9 @@ bazel_dep(name = "openroad", version = "1.0.0")
 bazel_dep(name = "swig", version = "4.3.0")
 bazel_dep(name = "yosys", version = "0.52.0")
 bazel_dep(name = "nextpnr", version = "0.8.0")
-bazel_dep(name = "icestorm", version = "0.0.1")
+bazel_dep(name = "icestorm", version = "0.0.0-20251213")
 bazel_dep(name = "prjtrellis", version = "1.4.0")
-bazel_dep(name = "p7zip", version = "24.9.0")
+bazel_dep(name = "p7zip", version = "25.01")
 bazel_dep(name = "rules_hdl", version = "0.0.1")
 
 bazel_dep(name = "googletest", version = "1.17.0", dev_dependency=True)
@@ -59,69 +59,71 @@ bazel_dep(name = "googletest", version = "1.17.0", dev_dependency=True)
 # It's still necessary to override them here.
 archive_override(
     module_name = "p7zip",
-    urls = ["https://github.com/amorphic-io/7zip/archive/be778d8e29b3f21bd3b0c661be0d4f4ab49d3ffa.tar.gz"],
-    strip_prefix = "7zip-be778d8e29b3f21bd3b0c661be0d4f4ab49d3ffa",
-    integrity = "sha256-f1p8RH5gVFqbKYLhUNMrnFNdihGltL2qb7lzE2/FPh4=",
+    urls = ["https://github.com/MrAMS/p7zip/archive/f4490229090f8da4ba188c67bdede3b845d7a0bc.tar.gz"],
+    strip_prefix = "p7zip-f4490229090f8da4ba188c67bdede3b845d7a0bc",
+    integrity = "sha256-nJZ0NGqDk3PNHcquF0yB+5/E/3i7yB6vEbnE6ADzUkY=",
 )
 archive_override(
     module_name = "prjtrellis",
-    urls = ["https://github.com/amorphic-io/prjtrellis/archive/3332d029295a8e424969126f5c61a5ea111882a8.tar.gz"],
-    strip_prefix = "prjtrellis-3332d029295a8e424969126f5c61a5ea111882a8",
-    integrity = "sha256-qCxhfMuBaTBGNFUg7Q4i9jW/+9Cv9ITAzyA17NcUs/A=",
+    urls = ["https://github.com/MrAMS/prjtrellis/archive/2c62504f499c7a0642a2142f4c76c309a89f2785.tar.gz"],
+    strip_prefix = "prjtrellis-2c62504f499c7a0642a2142f4c76c309a89f2785",
+    integrity = "sha256-VwWg78pWuc9jWNt3y4PxuoxEAjPaxxw0TFSgIMwy9mo=",
 )
 archive_override(
     module_name = "icestorm",
-    urls = ["https://github.com/amorphic-io/icestorm/archive/85fd1682b58581b82d1d14f63c089fb033177c21.tar.gz"],
-    strip_prefix = "icestorm-85fd1682b58581b82d1d14f63c089fb033177c21",
-    integrity = "sha256-3f+I4zc4MSJ3LRQ4j4w6Gon9byBy4YJrkHRQyaArueE=",
+    urls = ["https://github.com/MrAMS/icestorm/archive/03cc0386e180581f0ede94bc83bf9290875bfdbf.tar.gz"],
+    strip_prefix = "icestorm-03cc0386e180581f0ede94bc83bf9290875bfdbf",
+    integrity = "sha256-/7/Wc7hD9cOIshUqjoFqzTL3ROrSnycW/1RLs66CqKk=",
 )
 archive_override(
     module_name = "nextpnr",
-    urls = ["https://github.com/amorphic-io/nextpnr/archive/2ab1f5e7e6be52e2a59347cace86f5c16348a115.tar.gz"],
-    strip_prefix = "nextpnr-2ab1f5e7e6be52e2a59347cace86f5c16348a115",
-    integrity = "sha256-VUeMV4jdwGfioBAWvbGv8nK6Xxd98i8yr3VYS4b8xfE=",
+    urls = ["https://github.com/MrAMS/nextpnr/archive/d3aa4468008b46f0c8fc46f1f57bbe6672cbad29.tar.gz"],
+    strip_prefix = "nextpnr-d3aa4468008b46f0c8fc46f1f57bbe6672cbad29",
+    integrity = "sha256-ZcSs9iPwnCpYIBRRCZOLI3icrS48riL3TedGmCdvFuQ=",
 )
 archive_override(
     module_name = "cxxopts",
-    urls = ["https://github.com/amorphic-io/cxxopts/archive/0fc4bdab71ea25e3623e2b609b4e5b2bd20bb938.tar.gz"],
-    strip_prefix = "cxxopts-0fc4bdab71ea25e3623e2b609b4e5b2bd20bb938",
-    integrity = "sha256-eU41+L7oMG5cilOjOPgb9kjVcfiaq1YVwAU+bNd/NOs=",
+    urls = ["https://github.com/MrAMS/cxxopts/archive/f5298b3614d974ff4603dec0de0aa999fce3a6ae.tar.gz"],
+    strip_prefix = "cxxopts-f5298b3614d974ff4603dec0de0aa999fce3a6ae",
+    integrity = "sha256-J+jCq6x4akp5TR2OUdBFb/dbFhmZpPuEq/1257wEqc4=",
 )
+# TODO, have submodule, cannot use `archive_override`
 archive_override(
     module_name = "yosys",
+    urls = ["https://github.com/MrAMS/yosys/releases/download/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591.tar.gz"],
     integrity = "sha256-iBIJaYqUIxMIwteRmQa2bfkT2cyMHvf28PpXx3ngdYg=",
-    urls = ["https://github.com/MrAMS/yosys/releases/download/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591.tar.gz"]
 )
 archive_override(
     module_name = "swig",
-    urls = ["https://github.com/amorphic-io/swig/archive/52ed25274e9042611bda40c42e48aae8b6748686.tar.gz"],
-    strip_prefix = "swig-52ed25274e9042611bda40c42e48aae8b6748686",
-    integrity = "sha256-R4H7DZrQ1U1Mpzwu1yWxzuoChbv0CZDzsullV5ezDfw=",
+    urls = ["https://github.com/MrAMS/swig/archive/64b28ef632d8ca12db479c214bc7aa0fc9eb9d12.tar.gz"],
+    strip_prefix = "swig-64b28ef632d8ca12db479c214bc7aa0fc9eb9d12",
+    integrity = "sha256-LeMUBFYa54u4u3Yqv3R7lCAdrFefqm4RavoKbhgSNY4=",
 )
 archive_override(
     module_name = "iverilog",
-    urls = ["https://github.com/amorphic-io/iverilog/archive/760dfa28d8f863164a2fbbaabebd1202850249c8.tar.gz"],
-    strip_prefix = "iverilog-760dfa28d8f863164a2fbbaabebd1202850249c8",
-    integrity = "sha256-VjYcq0LbKBjmZ2NXOILJ1NjtUHg5PBHy1eV+63/BO90=",
+    urls = ["https://github.com/MrAMS/iverilog/archive/5a8b87aaaa6e4f85bdf7e7ed82b581ffc64cb2dd.tar.gz"],
+    strip_prefix = "iverilog-5a8b87aaaa6e4f85bdf7e7ed82b581ffc64cb2dd",
+    integrity = "sha256-J07/ZSHNuK6UYMZGv+WmSp942HCra98rPGwcEbEvO8k=",
 )
 archive_override(
     module_name = "lemon",
-    urls = ["https://github.com/amorphic-io/lemon/archive/c7b098040c9e0741e21f7229d98594386914bd9b.tar.gz"],
-    strip_prefix = "lemon-c7b098040c9e0741e21f7229d98594386914bd9b",
-    integrity = "sha256-+KVhjbPO5X7UDbY377jNy7yRGpUSj3ONhhr1qmF0Nmg=",
+    urls = ["https://github.com/MrAMS/lemon/archive/685fa0c61eec87eb5b70985487ad72f76c35c3bb.tar.gz"],
+    strip_prefix = "lemon-685fa0c61eec87eb5b70985487ad72f76c35c3bb",
+    integrity = "sha256-Bk8y26TDn8q9Tj5FDn5mL5cR3wP77MBVcuBYt/ics1g=",
 )
 archive_override(
     module_name = "abc",
-    urls = ["https://github.com/amorphic-io/abc/archive/2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc.tar.gz"],
+    urls = ["https://github.com/MrAMS/abc/archive/2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc.tar.gz"],
     strip_prefix = "abc-2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc",
     integrity = "sha256-deCu+3tGmpIhq8r1xR/4l8G2odK8P+3eRviuimJk+2g=",
 )
 archive_override(
     module_name = "ncurses",
-    urls = ["https://github.com/amorphic-io/ncurses/archive/f918fafc9f7aeb1745d02e7978597abf8e580de2.tar.gz"],
+    urls = ["https://github.com/MrAMS/ncurses/archive/f918fafc9f7aeb1745d02e7978597abf8e580de2.tar.gz"],
     strip_prefix = "ncurses-f918fafc9f7aeb1745d02e7978597abf8e580de2",
     integrity = "sha256-A/JhotIW/4KQeYQMVqkgt5I6PG4zxRArBgOp255VI5c=",
 )
+# TODO, llvm-project on bcr have errors on openmp
 archive_override(
     module_name = "llvm-project",
     urls = ["https://github.com/amorphic-io/llvm-project/archive/93c4a9c7b9d2fef50ad97c80efa54ccaed7df0c8.tar.gz"],
@@ -134,10 +136,11 @@ archive_override(
     strip_prefix = "tcl-e285aca41d39e84ab1753f125b095d65a0e15640",
     integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
 )
+# TODO, have submodule, cannot use `archive_override`
 archive_override(
     module_name = "openroad",
-    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b/snapshot-04e15ceb7d808bb5719236d98eca2759582f156b.tar.gz"],
-    integrity = "sha256-R52OM3qyOjgvZQhfRoG34eWagfWzA5fz308QDT4OrPw=",
+    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251213-c1ad1e1/snapshot-20251213-c1ad1e1.tar.gz"],
+    integrity = "sha256-YKvWGYi8Fq2bI9MlKBNRmi3EWnifO/UmaQOVWeig9W4=",
 )
 archive_override(
     module_name = "bazel-orfs",
@@ -145,7 +148,7 @@ archive_override(
     strip_prefix = "bazel-orfs-126765508161956f8f82ae169084da0235230637",
     integrity = "sha256-zHtNue9q5rivqjcSBtufyLhgZp3LkD/m04J+7MV4w2U=",
 )
-
+# TODO
 archive_override(
     module_name = "rules_hdl",
     urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/2d1c16a122a8110056eccd3d78740a84d7af753e.tar.gz"],
