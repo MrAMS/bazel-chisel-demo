@@ -16,15 +16,16 @@ A demonstration of building Chisel RTL with Bazel, including complete ASIC desig
 ### Prerequisites
 
 - Bazel 8.0.0 (Linux x86_64)
-- JDK
 
 Bazel automatically handles following dependencies:
 - Scala 2.13.17
 - Chisel 7.1.1 (2025-09-28)
-- bazel_rules_hdl (2025-12-10)
-  - Verilator
-  - OpenROAD
-  - Yosys
+- [bazel_rules_hdl](https://github.com/MrAMS/bazel_rules_hdl) (2025-12-14)
+  - Verilator (5.034.ar.1)
+  - OpenROAD (2025-12-13)
+  - Yosys ([2025-05-05](https://github.com/amorphic-io/yosys/commit/f60bbe64aca3c5d87f30d8297931669e1cb8bea2))
+
+> The open-source community is actively pushing forward the migration of `rules_hdl` to `bzlmod`. You can refer to this [PR](https://github.com/hdl/bazel_rules_hdl/pull/428). We welcome you to join the community and contribute!
 
 ### Usage
 
@@ -54,7 +55,7 @@ bazel run :refresh_compile_commands
   ```
 - The EDA flow (`make eda`) is RAM & CPU intensive. Use --jobs=N on Bazel commands to limit concurrent jobs if resources are constrained.
 - [Zed](https://github.com/zed-industries/zed) + [Metals](https://github.com/scalameta/metals-zed) + GTKWave is recommended for development (2025-11-23).
-- You can check branch [WORKSPACE](https://github.com/MrAMS/bazel-chisel-demo/tree/WORKSPACE) for WORKSPACE workflow.
+- You can check branch [WORKSPACE](https://github.com/MrAMS/bazel-chisel-demo/tree/WORKSPACE) for more stable workflow.
 
 ## License
 
