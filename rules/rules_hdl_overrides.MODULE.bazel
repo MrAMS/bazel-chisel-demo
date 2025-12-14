@@ -157,10 +157,11 @@ archive_override(
     integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
 )
 # OpenROAD from MrAMS fork with Bazel compatibility fixes
+# snapshot-20251214-7f7fc2f: Fix FlexLexer.h include issue in sta_headers
 archive_override(
     module_name = "openroad",
-    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251213-8045df3/snapshot-20251213-8045df3.tar.gz"],
-    integrity = "sha256-dqm5iPTLyaiOud1Mtv8KnLUA5e91/3JoxO8WWLz+cHI=",
+    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251214-7f7fc2f/snapshot-20251214-7f7fc2f.tar.gz"],
+    integrity = "sha256-TmlMZNpJ51cUdOK7yZSnZ53gJEhqPwkUXFzJaughGkU=",
 )
 archive_override(
     module_name = "bazel-orfs",
