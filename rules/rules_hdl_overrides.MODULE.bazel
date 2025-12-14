@@ -1,148 +1,54 @@
 # rules_hdl dependency configuration for bazel-chisel-demo
 # This file is included from the main MODULE.bazel
 
-# Core HDL toolchain dependency
-bazel_dep(name = "rules_hdl", version = "0.0.1")
+# =============================================================================
+# All transitive dependencies must be explicitly declared
+# because rules_hdl is not from BCR (using archive_override)
+# =============================================================================
 
-# Override rules_hdl to use MrAMS fork with OpenROAD archive_override and fixes
-archive_override(
-    module_name = "rules_hdl",
-    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/3730c6818b5d8218063173132c1a8180037db9f6.tar.gz"],
-    strip_prefix = "bazel_rules_hdl-3730c6818b5d8218063173132c1a8180037db9f6",
-    integrity = "sha256-3y5nc8BrTdwK/w5+PsTVV/Sn4zb2ihSjBfRBazcMwXg=",
-)
+bazel_dep(name = "platforms", version = "0.0.11")
+bazel_dep(name = "abseil-cpp", version = "20250127.1")
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "boost.asio", version = "1.83.0.bcr.1")
+bazel_dep(name = "boost.config", version = "1.83.0.bcr.1")
+bazel_dep(name = "boost.fusion", version = "1.83.0.bcr.1")
+bazel_dep(name = "boost.geometry", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.graph", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.heap", version = "1.83.0")
+bazel_dep(name = "boost.icl", version = "1.83.0")
+bazel_dep(name = "boost.lambda", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.multi_array", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.phoenix", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.polygon", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.stacktrace", version = "1.83.0")
+bazel_dep(name = "boost.serialization", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.property_tree", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.spirit", version = "1.83.0.bcr.2")
+bazel_dep(name = "boost.algorithm", version = "1.83.0.bcr.1")
+bazel_dep(name = "boost.bind", version = "1.83.0.bcr.1")
+bazel_dep(name = "boost.optional", version = "1.83.0.bcr.1")
+bazel_dep(name = "boost.thread", version = "1.83.0.bcr.2")
 
-# Python toolchain (required for rules_hdl extensions)
+bazel_dep(name = "eigen", version = "4.0.0-20241125.bcr.2")
+bazel_dep(name = "fmt", version = "11.1.3")
+bazel_dep(name = "protobuf", version = "30.1")
+bazel_dep(name = "rules_bison", version = "0.4")
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "rules_flex", version = "0.4")
+bazel_dep(name = "rules_java", version = "8.11.0")
+bazel_dep(name = "rules_license", version = "1.0.0")
+bazel_dep(name = "rules_m4", version = "0.3")
 bazel_dep(name = "rules_python", version = "1.4.0")
+bazel_dep(name = "rules_pkg", version = "1.0.1")
+bazel_dep(name = "spdlog", version = "1.15.1")
 
-# Override OpenROAD to use latest snapshot with FlexLexer.h fix
-bazel_dep(name = "openroad", version = "1.0.0")
-archive_override(
-    module_name = "openroad",
-    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251214-40eb7b1/snapshot-20251214-40eb7b1.tar.gz"],
-    integrity = "sha256-YVgJl5t0D62S88Was2p4gVn8T61jgkcm4x3A6SimGbA=",
-)
+bazel_dep(name = "zlib", version = "1.3.1.bcr.5")
+bazel_dep(name = "or-tools", version = "9.12")
+bazel_dep(name = "readline", version = "8.2.bcr.2")
+bazel_dep(name = "verilator", version = "5.034")
+bazel_dep(name = "rules_verilator", version = "5.034")
 
-# Override specific EDA tools to use MrAMS forks with Bazel compatibility fixes
-# These overrides are necessary because we need archive snapshots instead of git for CI speed
-
-bazel_dep(name = "yosys", version = "0.52.0")
-archive_override(
-    module_name = "yosys",
-    urls = ["https://github.com/MrAMS/yosys/releases/download/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591/snapshot-bc10071628f6f01a20ca8e14b9695c8576369591.tar.gz"],
-    integrity = "sha256-iBIJaYqUIxMIwteRmQa2bfkT2cyMHvf28PpXx3ngdYg=",
-)
-
-bazel_dep(name = "swig", version = "4.3.0")
-archive_override(
-    module_name = "swig",
-    urls = ["https://github.com/MrAMS/swig/archive/64b28ef632d8ca12db479c214bc7aa0fc9eb9d12.tar.gz"],
-    strip_prefix = "swig-64b28ef632d8ca12db479c214bc7aa0fc9eb9d12",
-    integrity = "sha256-LeMUBFYa54u4u3Yqv3R7lCAdrFefqm4RavoKbhgSNY4=",
-)
-
-bazel_dep(name = "iverilog", version = "12.0.0")
-archive_override(
-    module_name = "iverilog",
-    urls = ["https://github.com/MrAMS/iverilog/archive/5a8b87aaaa6e4f85bdf7e7ed82b581ffc64cb2dd.tar.gz"],
-    strip_prefix = "iverilog-5a8b87aaaa6e4f85bdf7e7ed82b581ffc64cb2dd",
-    integrity = "sha256-J07/ZSHNuK6UYMZGv+WmSp942HCra98rPGwcEbEvO8k=",
-)
-
-bazel_dep(name = "nextpnr", version = "0.8.0")
-archive_override(
-    module_name = "nextpnr",
-    urls = ["https://github.com/MrAMS/nextpnr/archive/d3aa4468008b46f0c8fc46f1f57bbe6672cbad29.tar.gz"],
-    strip_prefix = "nextpnr-d3aa4468008b46f0c8fc46f1f57bbe6672cbad29",
-    integrity = "sha256-ZcSs9iPwnCpYIBRRCZOLI3icrS48riL3TedGmCdvFuQ=",
-)
-
-bazel_dep(name = "icestorm", version = "0.0.0-20251213")
-archive_override(
-    module_name = "icestorm",
-    urls = ["https://github.com/MrAMS/icestorm/archive/03cc0386e180581f0ede94bc83bf9290875bfdbf.tar.gz"],
-    strip_prefix = "icestorm-03cc0386e180581f0ede94bc83bf9290875bfdbf",
-    integrity = "sha256-/7/Wc7hD9cOIshUqjoFqzTL3ROrSnycW/1RLs66CqKk=",
-)
-
-bazel_dep(name = "prjtrellis", version = "1.4.0")
-archive_override(
-    module_name = "prjtrellis",
-    urls = ["https://github.com/MrAMS/prjtrellis/archive/2c62504f499c7a0642a2142f4c76c309a89f2785.tar.gz"],
-    strip_prefix = "prjtrellis-2c62504f499c7a0642a2142f4c76c309a89f2785",
-    integrity = "sha256-VwWg78pWuc9jWNt3y4PxuoxEAjPaxxw0TFSgIMwy9mo=",
-)
-
-bazel_dep(name = "abc", version = "0.0.0-20250408-yosyshq.bcr.1")
-archive_override(
-    module_name = "abc",
-    urls = ["https://github.com/MrAMS/abc/archive/2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc.tar.gz"],
-    strip_prefix = "abc-2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc",
-    integrity = "sha256-deCu+3tGmpIhq8r1xR/4l8G2odK8P+3eRviuimJk+2g=",
-)
-
-bazel_dep(name = "ncurses", version = "6.4.20221231.bcr.8")
-archive_override(
-    module_name = "ncurses",
-    urls = ["https://github.com/MrAMS/ncurses/archive/f918fafc9f7aeb1745d02e7978597abf8e580de2.tar.gz"],
-    strip_prefix = "ncurses-f918fafc9f7aeb1745d02e7978597abf8e580de2",
-    integrity = "sha256-A/JhotIW/4KQeYQMVqkgt5I6PG4zxRArBgOp255VI5c=",
-)
-
-bazel_dep(name = "lemon", version = "1.3.1")
-archive_override(
-    module_name = "lemon",
-    urls = ["https://github.com/MrAMS/lemon/archive/685fa0c61eec87eb5b70985487ad72f76c35c3bb.tar.gz"],
-    strip_prefix = "lemon-685fa0c61eec87eb5b70985487ad72f76c35c3bb",
-    integrity = "sha256-Bk8y26TDn8q9Tj5FDn5mL5cR3wP77MBVcuBYt/ics1g=",
-)
-
-bazel_dep(name = "p7zip", version = "25.01")
-archive_override(
-    module_name = "p7zip",
-    urls = ["https://github.com/MrAMS/p7zip/archive/f4490229090f8da4ba188c67bdede3b845d7a0bc.tar.gz"],
-    strip_prefix = "p7zip-f4490229090f8da4ba188c67bdede3b845d7a0bc",
-    integrity = "sha256-nJZ0NGqDk3PNHcquF0yB+5/E/3i7yB6vEbnE6ADzUkY=",
-)
-
-# Override supporting libraries that need Bazel compatibility patches
-# Note: cxxopts is a transitive dependency but we need to override it
-bazel_dep(name = "cxxopts", version = "3.2.1")
-archive_override(
-    module_name = "cxxopts",
-    urls = ["https://github.com/MrAMS/cxxopts/archive/f5298b3614d974ff4603dec0de0aa999fce3a6ae.tar.gz"],
-    strip_prefix = "cxxopts-f5298b3614d974ff4603dec0de0aa999fce3a6ae",
-    integrity = "sha256-J+jCq6x4akp5TR2OUdBFb/dbFhmZpPuEq/1257wEqc4=",
-)
-
-# Override tcl to use amorphic-io fork with Bazel support
-bazel_dep(name = "tcl", version = "8.6.10")
-archive_override(
-    module_name = "tcl",
-    urls = ["https://github.com/amorphic-io/tcl/archive/e285aca41d39e84ab1753f125b095d65a0e15640.tar.gz"],
-    strip_prefix = "tcl-e285aca41d39e84ab1753f125b095d65a0e15640",
-    integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
-)
-
-# Override llvm-project due to OpenMP issues in BCR version
-bazel_dep(name = "llvm-project", version = "21.0.0")
-archive_override(
-    module_name = "llvm-project",
-    urls = ["https://github.com/amorphic-io/llvm-project/archive/93c4a9c7b9d2fef50ad97c80efa54ccaed7df0c8.tar.gz"],
-    strip_prefix = "llvm-project-93c4a9c7b9d2fef50ad97c80efa54ccaed7df0c8",
-    integrity = "sha256-EyLJa4edCj4wX9LZHVnyEy0OhDugkPGXsqovOZFNAmU=",
-)
-
-# Override bazel-orfs for compatibility
-bazel_dep(name = "bazel-orfs", version = "1.0.0")
-archive_override(
-    module_name = "bazel-orfs",
-    urls = ["https://github.com/The-OpenROAD-Project/bazel-orfs/archive/126765508161956f8f82ae169084da0235230637.tar.gz"],
-    strip_prefix = "bazel-orfs-126765508161956f8f82ae169084da0235230637",
-    integrity = "sha256-zHtNue9q5rivqjcSBtufyLhgZp3LkD/m04J+7MV4w2U=",
-)
-
-# Use custom registry for verilator and systemc
+# Custom registry for verilator and systemc
 single_version_override(
     module_name = "rules_verilator",
     registry = "https://raw.githubusercontent.com/Pinata-Consulting/ascenium-registry/683f93e670a04f8d3d47316c42d197d8ac095a00/",
@@ -161,13 +67,145 @@ single_version_override(
     version = "3.0.1",
 )
 
-# Python toolchain configuration (required by rules_hdl)
+bazel_dep(name = "lemon", version = "1.3.1")
+bazel_dep(name = "iverilog", version = "12.0.0")
+bazel_dep(name = "abc", version = "0.0.0-20250408-yosyshq.bcr.1")
+bazel_dep(name = "ncurses", version = "6.4.20221231.bcr.8")
+bazel_dep(name = "tcl", version = "8.6.10")
+bazel_dep(name = "openroad", version = "1.0.0")
+bazel_dep(name = "swig", version = "4.3.0")
+bazel_dep(name = "yosys", version = "0.52.0")
+bazel_dep(name = "nextpnr", version = "0.8.0")
+bazel_dep(name = "icestorm", version = "0.0.0-20251213")
+bazel_dep(name = "prjtrellis", version = "1.4.0")
+bazel_dep(name = "p7zip", version = "25.01")
+bazel_dep(name = "rules_hdl", version = "0.0.1")
+
+bazel_dep(name = "googletest", version = "1.17.0", dev_dependency=True)
+
+# =============================================================================
+# Archive overrides - use MrAMS forks with Bazel compatibility fixes
+# =============================================================================
+
+# Tools WITH submodules - use CI-packaged archives from rules_hdl release
+archive_override(
+    module_name = "yosys",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-f157761/yosys-release-20251214-f157761.tar.gz"],
+    strip_prefix = "yosys-bc10071628f6f01a20ca8e14b9695c8576369591",
+    integrity = "sha256-blMMT6m8FWY4cYT+FfxR/XmrvEtvi/ZhlOPVN5y8khA=",
+)
+
+archive_override(
+    module_name = "nextpnr",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-f157761/nextpnr-release-20251214-f157761.tar.gz"],
+    strip_prefix = "nextpnr-d3aa4468008b46f0c8fc46f1f57bbe6672cbad29",
+    integrity = "sha256-Fa/cQGymQFUkGKsHsNU0zvhjC3+g9cV7xHbTaAFbB9I=",
+)
+
+archive_override(
+    module_name = "prjtrellis",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-f157761/prjtrellis-release-20251214-f157761.tar.gz"],
+    strip_prefix = "prjtrellis-2c62504f499c7a0642a2142f4c76c309a89f2785",
+    integrity = "sha256-Mr46OKJZApEWN+U/A809hiok13Ei1+5iKSqkS3+CBeo=",
+)
+
+# Tools WITHOUT submodules - use MrAMS forks with direct GitHub archive
+archive_override(
+    module_name = "p7zip",
+    urls = ["https://github.com/MrAMS/p7zip/archive/f4490229090f8da4ba188c67bdede3b845d7a0bc.tar.gz"],
+    strip_prefix = "p7zip-f4490229090f8da4ba188c67bdede3b845d7a0bc",
+    integrity = "sha256-nJZ0NGqDk3PNHcquF0yB+5/E/3i7yB6vEbnE6ADzUkY=",
+)
+
+archive_override(
+    module_name = "icestorm",
+    urls = ["https://github.com/MrAMS/icestorm/archive/03cc0386e180581f0ede94bc83bf9290875bfdbf.tar.gz"],
+    strip_prefix = "icestorm-03cc0386e180581f0ede94bc83bf9290875bfdbf",
+    integrity = "sha256-/7/Wc7hD9cOIshUqjoFqzTL3ROrSnycW/1RLs66CqKk=",
+)
+
+archive_override(
+    module_name = "cxxopts",
+    urls = ["https://github.com/MrAMS/cxxopts/archive/f5298b3614d974ff4603dec0de0aa999fce3a6ae.tar.gz"],
+    strip_prefix = "cxxopts-f5298b3614d974ff4603dec0de0aa999fce3a6ae",
+    integrity = "sha256-J+jCq6x4akp5TR2OUdBFb/dbFhmZpPuEq/1257wEqc4=",
+)
+
+archive_override(
+    module_name = "swig",
+    urls = ["https://github.com/MrAMS/swig/archive/64b28ef632d8ca12db479c214bc7aa0fc9eb9d12.tar.gz"],
+    strip_prefix = "swig-64b28ef632d8ca12db479c214bc7aa0fc9eb9d12",
+    integrity = "sha256-LeMUBFYa54u4u3Yqv3R7lCAdrFefqm4RavoKbhgSNY4=",
+)
+
+archive_override(
+    module_name = "iverilog",
+    urls = ["https://github.com/MrAMS/iverilog/archive/5a8b87aaaa6e4f85bdf7e7ed82b581ffc64cb2dd.tar.gz"],
+    strip_prefix = "iverilog-5a8b87aaaa6e4f85bdf7e7ed82b581ffc64cb2dd",
+    integrity = "sha256-J07/ZSHNuK6UYMZGv+WmSp942HCra98rPGwcEbEvO8k=",
+)
+
+archive_override(
+    module_name = "lemon",
+    urls = ["https://github.com/MrAMS/lemon/archive/685fa0c61eec87eb5b70985487ad72f76c35c3bb.tar.gz"],
+    strip_prefix = "lemon-685fa0c61eec87eb5b70985487ad72f76c35c3bb",
+    integrity = "sha256-Bk8y26TDn8q9Tj5FDn5mL5cR3wP77MBVcuBYt/ics1g=",
+)
+
+archive_override(
+    module_name = "abc",
+    urls = ["https://github.com/MrAMS/abc/archive/2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc.tar.gz"],
+    strip_prefix = "abc-2fa8f6e551a85da586fbe01792e6cfdaa7ce72cc",
+    integrity = "sha256-deCu+3tGmpIhq8r1xR/4l8G2odK8P+3eRviuimJk+2g=",
+)
+
+archive_override(
+    module_name = "ncurses",
+    urls = ["https://github.com/MrAMS/ncurses/archive/f918fafc9f7aeb1745d02e7978597abf8e580de2.tar.gz"],
+    strip_prefix = "ncurses-f918fafc9f7aeb1745d02e7978597abf8e580de2",
+    integrity = "sha256-A/JhotIW/4KQeYQMVqkgt5I6PG4zxRArBgOp255VI5c=",
+)
+
+# tcl - use amorphic-io fork with Bazel support
+archive_override(
+    module_name = "tcl",
+    urls = ["https://github.com/amorphic-io/tcl/archive/e285aca41d39e84ab1753f125b095d65a0e15640.tar.gz"],
+    strip_prefix = "tcl-e285aca41d39e84ab1753f125b095d65a0e15640",
+    integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
+)
+
+# OpenROAD - use latest MrAMS snapshot with FlexLexer.h fix
+archive_override(
+    module_name = "openroad",
+    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251214-40eb7b1/snapshot-20251214-40eb7b1.tar.gz"],
+    integrity = "sha256-YVgJl5t0D62S88Was2p4gVn8T61jgkcm4x3A6SimGbA=",
+)
+
+# bazel-orfs - use The-OpenROAD-Project official repo
+archive_override(
+    module_name = "bazel-orfs",
+    urls = ["https://github.com/The-OpenROAD-Project/bazel-orfs/archive/126765508161956f8f82ae169084da0235230637.tar.gz"],
+    strip_prefix = "bazel-orfs-126765508161956f8f82ae169084da0235230637",
+    integrity = "sha256-zHtNue9q5rivqjcSBtufyLhgZp3LkD/m04J+7MV4w2U=",
+)
+
+# rules_hdl - use MrAMS fork with -quiet flag fix and other improvements
+archive_override(
+    module_name = "rules_hdl",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/3730c6818b5d8218063173132c1a8180037db9f6.tar.gz"],
+    strip_prefix = "bazel_rules_hdl-3730c6818b5d8218063173132c1a8180037db9f6",
+    integrity = "sha256-3y5nc8BrTdwK/w5+PsTVV/Sn4zb2ihSjBfRBazcMwXg=",
+)
+
+# =============================================================================
+# Python and HDL extensions
+# =============================================================================
+
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(
     python_version = "3.11",
 )
 
-# HDL extensions for PDK support
 hdl = use_extension("@rules_hdl//:extensions.bzl", "hdl_ext")
 
 hdl.skywater_pdk(
@@ -177,6 +215,7 @@ hdl.skywater_pdk(
         "sky130_fd_sc_hd",
     ],
 )
+
 use_repo(hdl, "com_google_skywater_pdk")
 use_repo(hdl, "com_google_skywater_pdk_sky130_fd_io")
 use_repo(hdl, "com_google_skywater_pdk_sky130_fd_sc_hd")
@@ -189,11 +228,8 @@ hdl.asap7_pdk(
         "sc7p5t_28",
     ],
 )
+
 use_repo(hdl, "org_theopenroadproject_asap7_pdk")
 use_repo(hdl, "org_theopenroadproject_asap7_pdk_sc7p5t_28")
 use_repo(hdl, "org_theopenroadproject_asap7_pdk_sc6t_26")
 use_repo(hdl, "org_theopenroadproject_asap7_pdk_sc7p5t_27")
-
-# Note: All other dependencies (boost, eigen, fmt, protobuf, spdlog, etc.)
-# are transitive dependencies from openroad and rules_hdl, and will be
-# automatically resolved by Bazel's dependency resolution mechanism.
