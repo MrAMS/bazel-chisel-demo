@@ -90,23 +90,30 @@ bazel_dep(name = "googletest", version = "1.17.0", dev_dependency=True)
 # Tools WITH submodules - use CI-packaged archives from rules_hdl release
 archive_override(
     module_name = "yosys",
-    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-f157761/yosys-release-20251214-f157761.tar.gz"],
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-e469a1f/yosys-release-20251214-e469a1f.tar.gz"],
     strip_prefix = "yosys-bc10071628f6f01a20ca8e14b9695c8576369591",
-    integrity = "sha256-blMMT6m8FWY4cYT+FfxR/XmrvEtvi/ZhlOPVN5y8khA=",
+    integrity = "sha256-hPqat8FCY0Vec06rfdzgL53JiVToftk/HUvPZM4Ollg=",
 )
 
 archive_override(
     module_name = "nextpnr",
-    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-f157761/nextpnr-release-20251214-f157761.tar.gz"],
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-e469a1f/nextpnr-release-20251214-e469a1f.tar.gz"],
     strip_prefix = "nextpnr-d3aa4468008b46f0c8fc46f1f57bbe6672cbad29",
-    integrity = "sha256-Fa/cQGymQFUkGKsHsNU0zvhjC3+g9cV7xHbTaAFbB9I=",
+    integrity = "sha256-D+SCFEadpfcusPAjiqgrcPN+CV4lp5KTEpdOxtr4k4Q=",
 )
 
 archive_override(
     module_name = "prjtrellis",
-    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-f157761/prjtrellis-release-20251214-f157761.tar.gz"],
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-e469a1f/prjtrellis-release-20251214-e469a1f.tar.gz"],
     strip_prefix = "prjtrellis-2c62504f499c7a0642a2142f4c76c309a89f2785",
-    integrity = "sha256-Mr46OKJZApEWN+U/A809hiok13Ei1+5iKSqkS3+CBeo=",
+    integrity = "sha256-ana6PpdrX6P8+x5NiOreT8+6qzTXSUfSQi7s6j/WTHw=",
+)
+
+archive_override(
+    module_name = "openroad",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/releases/download/release-20251214-e469a1f/openroad-release-20251214-e469a1f.tar.gz"],
+    strip_prefix = "OpenROAD-40eb7b12dc4f2c773af97c956cf3014038faad3c",
+    integrity = "sha256-AC9C3CEBCZy2xHQWdf3jVl1lMvFJ6fGJQpGo9BEsU7s=",
 )
 
 # Tools WITHOUT submodules - use MrAMS forks with direct GitHub archive
@@ -174,13 +181,6 @@ archive_override(
     integrity = "sha256-DKNNqUnXS7DIdWkFtSPhJSsTbeu/yIwzkjPacd2Ip3U=",
 )
 
-# OpenROAD - use latest MrAMS snapshot with FlexLexer.h fix
-archive_override(
-    module_name = "openroad",
-    urls = ["https://github.com/MrAMS/OpenROAD/releases/download/snapshot-20251214-40eb7b1/snapshot-20251214-40eb7b1.tar.gz"],
-    integrity = "sha256-YVgJl5t0D62S88Was2p4gVn8T61jgkcm4x3A6SimGbA=",
-)
-
 # bazel-orfs - use The-OpenROAD-Project official repo
 archive_override(
     module_name = "bazel-orfs",
@@ -192,9 +192,9 @@ archive_override(
 # rules_hdl - use MrAMS fork with -quiet flag fix and other improvements
 archive_override(
     module_name = "rules_hdl",
-    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/3730c6818b5d8218063173132c1a8180037db9f6.tar.gz"],
-    strip_prefix = "bazel_rules_hdl-3730c6818b5d8218063173132c1a8180037db9f6",
-    integrity = "sha256-3y5nc8BrTdwK/w5+PsTVV/Sn4zb2ihSjBfRBazcMwXg=",
+    urls = ["https://github.com/MrAMS/bazel_rules_hdl/archive/e469a1f0729390046e16c7dbf044844cc44f30c8.tar.gz"],
+    strip_prefix = "bazel_rules_hdl-e469a1f0729390046e16c7dbf044844cc44f30c8",
+    integrity = "sha256-bcGIJhgOAw4eBLFNZGtG8r2dn9BrD9K0gmGitUA9nqE=",
 )
 
 # =============================================================================
