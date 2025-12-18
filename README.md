@@ -1,3 +1,7 @@
+⚠️ DEPRECATED: This repository is outdated and no longer maintained. Please refer to the more modern version [MrAMS/bazel-chisel-verilator-openroad-demo](https://github.com/MrAMS/bazel-chisel-verilator-openroad-demo).
+
+---
+
 # Bazel Chisel Demo
 
 A demonstration of building Chisel RTL with Bazel, including complete ASIC design flow (RTL → GDS).
